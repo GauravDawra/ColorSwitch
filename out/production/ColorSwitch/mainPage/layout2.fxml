@@ -77,7 +77,7 @@
                   </ImageView>
                   <ImageView fitHeight="135.0" fitWidth="135.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="135.0" AnchorPane.topAnchor="135.0">
                      <image>
-                        <Image url="@../../public/sprites/arc_1_blue.png" />
+                        <Image url="@../../public/sprites/arc_2_blue.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="135.0" fitWidth="135.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="135.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="135.0" AnchorPane.topAnchor="0.0">
