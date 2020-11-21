@@ -24,8 +24,6 @@ public class Controller implements Initializable {
     public AnchorPane outerMostCircle;
     @FXML
     public ImageView playButton;
-    @FXML
-    public ImageView restartButton;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -50,8 +48,6 @@ public class Controller implements Initializable {
         rotateOuterMost.play();
 
         scaleAnimation(playButton, 0.25f);
-
-        scaleAnimation(restartButton, 0.12f);
 
     }
 
