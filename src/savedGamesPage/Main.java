@@ -1,4 +1,4 @@
-package mainPage;
+package savedGamesPage;
 
 
 import javafx.application.Application;
