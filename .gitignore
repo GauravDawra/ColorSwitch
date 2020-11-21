@@ -5,3 +5,4 @@
 .idea/usage.statistics.xml
 ./idea/shelf
 *.iml
+.idea/misc.xml
