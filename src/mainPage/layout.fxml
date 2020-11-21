@@ -43,22 +43,22 @@
                <children>
                   <ImageView fitHeight="105.0" fitWidth="105.0" layoutX="120.0" layoutY="134.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="105.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="105.0">
                      <image>
-                        <Image url="@../../public/sprites/arc_1_pink.png" />
+                        <Image url="@../sprites/arc_1_pink.png" />
                      </image>
                   </ImageView>
                   <ImageView blendMode="ADD" fitHeight="105.0" fitWidth="105.0" layoutX="110.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="105.0" AnchorPane.leftAnchor="105.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <image>
-                        <Image url="@../../public/sprites/arc_1_yellow.png" />
+                        <Image url="@../sprites/arc_1_yellow.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="105.0" fitWidth="105.0" layoutX="-42.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="105.0" AnchorPane.topAnchor="105.0">
                      <image>
-                        <Image url="@../../public/sprites/arc_1_blue.png" />
+                        <Image url="@../sprites/arc_1_blue.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="105.0" fitWidth="105.0" layoutX="11.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="105.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="105.0" AnchorPane.topAnchor="0.0">
                      <image>
-                        <Image url="@../../public/sprites/arc_1_green.png" />
+                        <Image url="@../sprites/arc_1_green.png" />
                      </image>
                   </ImageView>
                </children>
@@ -67,22 +67,22 @@
                <children>
                   <ImageView fitHeight="135.0" fitWidth="135.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="135.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="135.0">
                      <image>
-                        <Image url="@../../public/sprites/arc_1_pink.png" />
+                        <Image url="@../sprites/arc_1_pink.png" />
                      </image>
                   </ImageView>
                   <ImageView blendMode="ADD" fitHeight="135.0" fitWidth="135.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="135.0" AnchorPane.leftAnchor="135.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <image>
-                        <Image url="@../../public/sprites/arc_1_yellow.png" />
+                        <Image url="@../sprites/arc_1_yellow.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="135.0" fitWidth="135.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="135.0" AnchorPane.topAnchor="135.0">
                      <image>
-                        <Image url="@../../public/sprites/arc_1_blue.png" />
+                        <Image url="@../sprites/arc_1_blue.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="135.0" fitWidth="135.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="135.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="135.0" AnchorPane.topAnchor="0.0">
                      <image>
-                        <Image url="@../../public/sprites/arc_1_green.png" />
+                        <Image url="@../sprites/arc_1_green.png" />
                      </image>
                   </ImageView>
                </children>
@@ -91,29 +91,29 @@
                <children>
                   <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="11.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="0.0">
                      <image>
-                        <Image url="@../../public/sprites/arc_1_green.png" />
+                        <Image url="@../sprites/arc_1_green.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="1.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="80.0">
                      <image>
-                        <Image url="@../../public/sprites/arc_1_blue.png" />
+                        <Image url="@../sprites/arc_1_blue.png" />
                      </image>
                   </ImageView>
                   <ImageView blendMode="ADD" fitHeight="80.0" fitWidth="80.0" layoutX="77.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <image>
-                        <Image url="@../../public/sprites/arc_1_yellow.png" />
+                        <Image url="@../sprites/arc_1_yellow.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="80.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
                      <image>
-                        <Image url="@../../public/sprites/arc_1_pink.png" />
+                        <Image url="@../sprites/arc_1_pink.png" />
                      </image>
                   </ImageView>
                </children>
             </AnchorPane>
             <ImageView fx:id="playButton" fitHeight="100.0" fitWidth="100.0" layoutX="85.0" layoutY="85.0" onMouseClicked="#playPressed" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="85.0" AnchorPane.leftAnchor="85.0" AnchorPane.rightAnchor="85.0" AnchorPane.topAnchor="85.0">
                <image>
-                  <Image url="@../../public/sprites/button_play.png" />
+                  <Image url="@../sprites/button_play.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
