@@ -1,0 +1,8 @@
+.DS_Store
+*.iws
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/usage.statistics.xml
+./idea/shelf
+*.iml
+.idea/misc.xml
