@@ -47,14 +47,18 @@ public class Controller implements Initializable {
         rotateOuterMost.setInterpolator(Interpolator.LINEAR);
         rotateOuterMost.play();
 
-        ScaleTransition scalePlay = new ScaleTransition(Duration.millis(750), playButton);
-        scalePlay.setByX(0.25f);
-        scalePlay.setByY(0.25f);
+        scaleAnimation(playButton, 0.25f);
+
+    }
+
+    private void scaleAnimation(ImageView image, double val) {
+        ScaleTransition scalePlay = new ScaleTransition(Duration.millis(750), image);
+        scalePlay.setByX(val);
+        scalePlay.setByY(val);
         scalePlay.setCycleCount(Animation.INDEFINITE);
         scalePlay.setInterpolator(Interpolator.EASE_BOTH);
         scalePlay.setAutoReverse(true);
         scalePlay.play();
-
     }
 
     public void keyPressed(KeyEvent keyEvent) {
