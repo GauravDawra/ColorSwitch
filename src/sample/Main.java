@@ -6,6 +6,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import util.Color;
+import util.Vector;
+
 public class Main extends Application {
 
     @Override
@@ -18,6 +21,10 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
+//        System.out.println(Color.BLUE.getColor());
+//        Vector v = new Vector();
+//        v.add(new Vector(1,2));
+//        System.out.println(v);
         launch(args);
     }
 }
