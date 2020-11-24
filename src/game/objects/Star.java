@@ -1,5 +1,7 @@
-package game;
+package game.objects;
 
+import game.GameObject;
+import javafx.scene.Node;
 import util.Removable;
 
 public class Star extends GameObject implements Removable {
@@ -20,5 +22,10 @@ public class Star extends GameObject implements Removable {
     @Override
     public void display() {
 
+    }
+
+    @Override
+    public Node getNode() {
+        return null;
     }
 }

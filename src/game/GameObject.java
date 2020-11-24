@@ -33,6 +33,9 @@ public abstract class GameObject {
         return visibility;
     }
 
+    public void setVisibility(boolean vis) {
+        this.visibility = vis;
+    }
 //    public void display() {
 //        visibility = true;
 //    }
