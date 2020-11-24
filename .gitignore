@@ -6,3 +6,4 @@
 ./idea/shelf
 *.iml
 .idea/misc.xml
+src/.idea
