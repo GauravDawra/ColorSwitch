@@ -1,4 +1,5 @@
 package game;
+import javafx.scene.Node;
 import util.Vector;
 
 public abstract class GameObject {
@@ -12,6 +13,11 @@ public abstract class GameObject {
 
     public GameObject(Vector pos, boolean vis) {
         this.position = pos;
+        this.visibility = vis;
+    }
+
+    public GameObject(double centerX, double centerY, boolean vis) {
+        this.position = new Vector(centerX, centerY);
         this.visibility = vis;
     }
 
@@ -31,4 +37,5 @@ public abstract class GameObject {
 //        visibility = true;
 //    }
     public abstract void display();
+    public abstract Node getNode();
 }
