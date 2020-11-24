@@ -15,13 +15,14 @@ public class Game implements Serializable {
     public static final double gravity = 5.0;
     private int score;
     private State state;
-//    private ArrayList<GameObject> component;
+    private ArrayList<GameObject> component;
     private Date date;
 
     public Game() {
         this.score = 0;
         this.state = State.PLAYING;
         this.date = java.util.Calendar.getInstance().getTime();
+        this.component = new ArrayList<>();
     }
 
     public int getScore() {
@@ -52,5 +53,11 @@ public class Game implements Serializable {
 
     public void exit() {
         setState(State.EXIT);
+    }
+
+    public GameObject getComponent(int ind) {
+        if(ind >= 0 && ind < component.size())
+            return component.get(ind);
+        return null;
     }
 }

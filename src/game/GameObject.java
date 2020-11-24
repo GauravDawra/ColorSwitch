@@ -1,13 +1,18 @@
 package game;
 import util.Vector;
 
-class GameObject {
-    Vector position;
-    boolean visibility;
+public abstract class GameObject {
+    private Vector position;
+    private boolean visibility;
 
-    GameObject() {
-        visibility = false;
+    public GameObject() {
+        visibility = true;
         position = new Vector();
+    }
+
+    public GameObject(Vector pos, boolean vis) {
+        this.position = pos;
+        this.visibility = vis;
     }
 
     public Vector getPosition() {
