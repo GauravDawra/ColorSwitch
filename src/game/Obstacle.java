@@ -16,4 +16,9 @@ public class Obstacle extends GameObject {
     public int getNoOfColors() {
         return noOfColors;
     }
+
+    @Override
+    public void display() {
+
+    }
 }
