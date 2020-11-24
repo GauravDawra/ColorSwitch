@@ -6,4 +6,7 @@
 ./idea/shelf
 *.iml
 .idea/misc.xml
+.idea/libraries/lib.xml
 src/.idea
+
+/out
