@@ -1,31 +1,31 @@
 package util;
 
 public class Vector {
-    private int x, y;
+    private double x, y;
 
     public Vector() {
         this.x = 0;
         this.y = 0;
     }
 
-    public Vector(int x, int y) {
+    public Vector(double x, double y) {
         this.x = x;
         this.y = y;
     }
 
-    public int getX() {
+    public double getX() {
         return this.x;
     }
 
-    public int getY() {
+    public double getY() {
         return this.y;
     }
 
-    public void setX(int x) {
+    public void setX(double x) {
         this.x = x;
     }
 
-    public void setY(int y) {
+    public void setY(double y) {
         this.y = y;
     }
 
@@ -34,7 +34,7 @@ public class Vector {
         this.y += v.getY();
     }
 
-    public void add(int dx, int dy) {
+    public void add(double dx, double dy) {
         this.x += dx;
         this.y += dy;
     }
