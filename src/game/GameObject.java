@@ -27,8 +27,8 @@ public abstract class GameObject {
         return visibility;
     }
 
-    public void display() {
-        visibility = true;
-    }
-    
+//    public void display() {
+//        visibility = true;
+//    }
+    public abstract void display();
 }
