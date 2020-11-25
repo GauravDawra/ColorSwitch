@@ -1,5 +1,6 @@
 package sample;
 
+import game.objects.Ball;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,6 +15,10 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        Ball b = new Ball(100, 100);
+        Ball b2 = new Ball(101, 104);
+        System.out.println(Ball.UP_VELOCITY);
+        System.out.println(Ball.cnt);
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();

@@ -4,10 +4,15 @@ import game.GameObject;
 import javafx.scene.Node;
 import util.Removable;
 
-public class Star extends GameObject implements Removable {
-    public static final int VALUE = 1;
-    Star() {
+import java.util.ResourceBundle;
 
+public class Star extends GameObject implements Removable {
+    private static ResourceBundle bundle = ResourceBundle.getBundle("resources.DimensionBundle");
+
+    public static final int VALUE = (Integer) bundle.getObject("Star_value");
+
+    public Star(int centerX, int centerY) {
+        super(centerX, centerY, true);
     }
 
     public void split() {

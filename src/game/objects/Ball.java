@@ -1,17 +1,21 @@
 package game.objects;
 
 import game.GameObject;
-import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.effect.BlendMode;
 import javafx.scene.shape.Circle;
 import util.Color;
+import util.Removable;
 import util.Vector;
 
-public class Ball extends GameObject {
+import java.util.ResourceBundle;
 
-    public static final double RADIUS = 10.0; // in pixels // just for now
-    public static final double UP_VELOCITY = 20.0; // change later
+public class Ball extends GameObject implements Removable {
+    private static ResourceBundle bundle = ResourceBundle.getBundle("resources.DimensionBundle");
+
+    public static final double RADIUS = (Double) bundle.getObject("Ball_radius"); // in pixels // just for now
+    public static final double UP_VELOCITY = (Double) bundle.getObject("Jump_velocity"); // change later
+
     private Color color;
     private Vector velocity;
     private Circle circle;
@@ -25,6 +29,8 @@ public class Ball extends GameObject {
         this.circle = new Circle(this.getPosition().getX(), this.getPosition().getY(), Ball.RADIUS);
         this.circle.setFill(color.getColor());
         this.circle.setBlendMode(BlendMode.ADD);
+
+        // getting the resource bundle
     }
 
     public Color getColor() {
@@ -48,6 +54,11 @@ public class Ball extends GameObject {
         this.setVelocityY(Ball.UP_VELOCITY);
     }
 
+    public void breakBall() {
+        // to be decided yet
+        setVisibility(false);
+    }
+
     @Override
     public void display() { // deal with it later
 
@@ -56,5 +67,10 @@ public class Ball extends GameObject {
     @Override
     public Node getNode() {
         return this.circle;
+    }
+
+    @Override
+    public void remove() {
+        breakBall();
     }
 }
