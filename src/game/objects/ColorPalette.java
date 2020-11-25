@@ -1,6 +1,7 @@
 package game.objects;
 
 import java.util.Random;
+import java.util.ResourceBundle;
 
 import game.GameObject;
 import javafx.scene.Node;
@@ -8,7 +9,8 @@ import util.Color;
 import util.Removable;
 
 public class ColorPalette extends GameObject implements Removable {
-
+    private static ResourceBundle bundle = ResourceBundle.getBundle("resources.DimensionBundle");
+    public static final double RADIUS = (Double) bundle.getObject("ColorPallete_radius");
     private Random random;
     ColorPalette(double centerX, double centerY) {
         super(centerX, centerY, true);

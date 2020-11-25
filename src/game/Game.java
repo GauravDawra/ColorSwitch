@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 public class Game implements Serializable {
-    enum State {
+    public enum State {
         PLAYING,
         PAUSED,
         EXIT
@@ -29,6 +29,7 @@ public class Game implements Serializable {
         this.state = State.PLAYING;
         this.date = java.util.Calendar.getInstance().getTime();
         this.component = new ArrayList<>();
+        this.ball = new Ball(0, 0);
     }
 
     public int getScore() {
