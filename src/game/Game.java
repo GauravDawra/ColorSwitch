@@ -1,8 +1,11 @@
 package game;
 
+import game.objects.Ball;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.ResourceBundle;
 
 public class Game implements Serializable {
     enum State {
@@ -11,8 +14,11 @@ public class Game implements Serializable {
         EXIT
     }
 
-//    private Ball ball;
-    public static final double gravity = 5.0;
+    private static ResourceBundle bundle = ResourceBundle.getBundle("resources.DimensionBundle");
+
+    public static final double GRAVITY = (Double) bundle.getObject("Gravity");
+
+    private Ball ball;
     private int score;
     private State state;
     private ArrayList<GameObject> component;
