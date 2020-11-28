@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Arc?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" style="-fx-background-color: rgba(0,0,0,0);" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Arc fill="LIME" layoutX="148.0" layoutY="22.0" length="90.0" radiusX="20.0" radiusY="20.0" stroke="BLACK" strokeLineCap="ROUND" strokeWidth="0.0" type="ROUND" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Arc fill="AQUA" layoutX="148.0" layoutY="22.0" length="90.0" radiusX="20.0" radiusY="20.0" startAngle="90.0" stroke="BLACK" strokeLineCap="ROUND" strokeWidth="0.0" type="ROUND" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0" />
+      <Arc fill="#fffb00" layoutX="148.0" layoutY="22.0" length="90.0" radiusX="20.0" radiusY="20.0" startAngle="270.0" stroke="BLACK" strokeLineCap="ROUND" strokeWidth="0.0" type="ROUND" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0" />
+      <Arc fill="MAGENTA" layoutX="148.0" layoutY="22.0" length="90.0" radiusX="20.0" radiusY="20.0" startAngle="180.0" stroke="BLACK" strokeLineCap="ROUND" strokeWidth="0.0" type="ROUND" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" />
+   </children>
+</AnchorPane>

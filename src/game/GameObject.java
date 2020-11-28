@@ -29,6 +29,11 @@ public abstract class GameObject {
         this.position = position;
     }
 
+    public void setPosition(double centerX, double centerY) {
+        this.position.setX(centerX);
+        this.position.setY(centerY);
+    }
+
     public boolean isVisible() {
         return visibility;
     }

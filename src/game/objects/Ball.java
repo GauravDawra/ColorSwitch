@@ -22,19 +22,29 @@ public class Ball extends GameObject implements Removable {
 
     public Ball(double centerX, double centerY) {
         super(centerX, centerY, true);
+
         this.color = Color.GREEN; // for now it's green, we can change it to random
         this.velocity = new Vector();
 
         // define the circle here
-        this.circle = new Circle(this.getPosition().getX(), this.getPosition().getY(), Ball.RADIUS);
+        this.circle = new Circle(getPosition().getX(), getPosition().getY(), Ball.RADIUS);
         this.circle.setFill(color.getColor());
-        this.circle.setBlendMode(BlendMode.ADD);
+        circle.setCenterY(centerY);
+        circle.setCenterX(centerX);
+//        this.circle.setBlendMode(BlendMode.ADD);
 
         // getting the resource bundle
     }
 
     public Color getColor() {
         return this.color;
+    }
+
+    @Override
+    public void setPosition(double centerX, double centerY) {
+        super.setPosition(centerX, centerY);
+        circle.setCenterX(centerX);
+        circle.setCenterY(centerY);
     }
 
     public Vector getVelocity() {
@@ -51,7 +61,7 @@ public class Ball extends GameObject implements Removable {
     }
 
     public void jump() {
-        this.setVelocityY(Ball.UP_VELOCITY);
+        this.setVelocityY(-Ball.UP_VELOCITY);
     }
 
     public void breakBall() {
