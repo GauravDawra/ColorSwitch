@@ -106,12 +106,9 @@ public class Game extends Application implements Serializable {
         primaryStage.setScene(sc);
         ColorPalette pallete = new ColorPalette(WIDTH / 2, 500);
         sp.getChildren().add(pallete.getNode());
-        sc.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                ball.jump();
+        sc.setOnKeyPressed(event -> {
+            ball.jump();
 //                System.out.println("hello");
-            }
         });
 //        Circle cir = new Circle(10.0, Color.GREEN); //(Circle) ball.getNode();
 //        sp.getChildren().add(cir);
