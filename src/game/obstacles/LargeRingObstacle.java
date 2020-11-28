@@ -21,7 +21,7 @@ public class LargeRingObstacle extends Obstacle {
     public LargeRingObstacle(double centerX, double centerY) {
         super(centerX, centerY, 0, 4);
         try {
-            ring = FXMLLoader.load(getClass().getResource("/resources/views/largeRingObstacle/largeRingObstacle.fxml"));
+            ring = FXMLLoader.load(getClass().getResource("/resources/views/RingObstacle/largeRingObstacle.fxml"));
             ring.setLayoutY(centerY);
             ring.setLayoutX(centerX);
         } catch(Exception e) {}
