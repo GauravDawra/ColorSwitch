@@ -7,7 +7,8 @@ public class Obstacle extends GameObject implements Movable {
     private double speed;
     private int noOfColors;
 
-    Obstacle(double speed, int noOfColors) {
+    public Obstacle(double centerX, double centerY, double speed, int noOfColors) {
+        super(centerX, centerY, true);
         this.speed = speed;
         this.noOfColors = noOfColors;
     }

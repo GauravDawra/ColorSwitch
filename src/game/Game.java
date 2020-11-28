@@ -2,6 +2,7 @@ package game;
 
 import game.objects.Ball;
 import game.objects.ColorPalette;
+import game.obstacles.MediumRingObstacle;
 import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -105,7 +106,8 @@ public class Game extends Application implements Serializable {
         Scene sc = new Scene(sp, WIDTH, HEIGHT);
         primaryStage.setScene(sc);
         ColorPalette pallete = new ColorPalette(WIDTH / 2, 500);
-        sp.getChildren().add(pallete.getNode());
+        MediumRingObstacle ring = new MediumRingObstacle(WIDTH / 2, 400);
+        sp.getChildren().addAll(pallete.getNode(), ring.getNode());
         sc.setOnKeyPressed(event -> {
             ball.jump();
 //                System.out.println("hello");
@@ -127,7 +129,9 @@ public class Game extends Application implements Serializable {
                     System.out.println("yo");
                     ball.setColor(pallete.getRandomColor(ball.getColor()));
                 }
-
+                if(ring.check(ball)) {
+                    System.out.println("obstacle collision");
+                }
 //                ball.setPosition();
 //                vel.setY(vel.getY() + 9.8/5.0);
 //                System.out.println(ball.getPosition());
