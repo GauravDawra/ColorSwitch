@@ -5,12 +5,13 @@ import javafx.scene.Node;
 import javafx.scene.effect.BlendMode;
 import javafx.scene.shape.Circle;
 import util.Color;
+import util.Movable;
 import util.Removable;
 import util.Vector;
 
 import java.util.ResourceBundle;
 
-public class Ball extends GameObject implements Removable {
+public class Ball extends GameObject implements Movable, Removable {
     private static ResourceBundle bundle = ResourceBundle.getBundle("resources.DimensionBundle");
 
     public static final double RADIUS = (Double) bundle.getObject("Ball_radius"); // in pixels // just for now
@@ -82,5 +83,11 @@ public class Ball extends GameObject implements Removable {
     @Override
     public void remove() {
         breakBall();
+    }
+
+
+    @Override
+    public void move() {
+
     }
 }

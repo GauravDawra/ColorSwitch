@@ -1,8 +1,9 @@
 package game;
 
 import javafx.scene.Node;
+import util.Movable;
 
-public class Obstacle extends GameObject {
+public class Obstacle extends GameObject implements Movable {
     private double speed;
     private int noOfColors;
 
@@ -27,5 +28,10 @@ public class Obstacle extends GameObject {
     @Override
     public Node getNode() {
         return null; // for now it is returning null
+    }
+
+    @Override
+    public void move() {
+        
     }
 }
