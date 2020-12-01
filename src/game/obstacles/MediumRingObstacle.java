@@ -22,8 +22,8 @@ public class MediumRingObstacle extends Obstacle {
         super(centerX, centerY, 0, 4);
         try {
             ring = FXMLLoader.load(getClass().getResource("/resources/views/ringObstacle/mediumRingObstacle.fxml"));
-            ring.setLayoutY(centerY);
-            ring.setLayoutX(centerX);
+            ring.setLayoutY(centerY - RADIUS - 7.5);
+            ring.setLayoutX(centerX - RADIUS - 7.5);
         } catch(Exception e) {}
     }
 
