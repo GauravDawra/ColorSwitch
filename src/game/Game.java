@@ -107,11 +107,15 @@ public class Game extends Application implements Serializable {
         primaryStage.setScene(sc);
         ColorPalette pallete = new ColorPalette(WIDTH / 2, 500);
         MediumRingObstacle ring = new MediumRingObstacle(WIDTH / 2, 400);
-        sp.getChildren().addAll(pallete.getNode(), ring.getNode());
+        sp.getChildren().addAll( ring.getNode());
         sc.setOnKeyPressed(event -> {
             ball.jump();
 //                System.out.println("hello");
         });
+        ring.bindToBall(ball);
+
+//        ball.getNode().centerY
+
 //        Circle cir = new Circle(10.0, Color.GREEN); //(Circle) ball.getNode();
 //        sp.getChildren().add(cir);
         Vector vel = new Vector();
@@ -126,7 +130,7 @@ public class Game extends Application implements Serializable {
 //                if(((Path) Shape.intersect((Circle)ball.getNode(), (Shape) pallete.getNode())).getElements().size() > 0)
 //                    pallete.setVisibility(false);
                 if(pallete.check(ball)) {
-                    System.out.println("yo");
+//                    System.out.println("yo");
                     ball.setColor(pallete.getRandomColor(ball.getColor()));
                 }
                 if(ring.check(ball)) {

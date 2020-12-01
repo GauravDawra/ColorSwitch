@@ -19,14 +19,19 @@ public class RingController implements Initializable {
     @FXML
     public AnchorPane ringObstacle;
 
+    public double timeTaken = 2000;
+
+    public RingController(double t) {
+        this.timeTaken = t;
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        RotateTransition rotate = new RotateTransition(Duration.millis(2000), ringObstacle);
+        RotateTransition rotate = new RotateTransition(Duration.millis(timeTaken), ringObstacle);
         rotate.setByAngle(360);
         rotate.setCycleCount(Animation.INDEFINITE);
         rotate.setInterpolator(Interpolator.LINEAR);
         rotate.play();
-
     }
 
 }
