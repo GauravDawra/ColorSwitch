@@ -31,8 +31,8 @@ public class MediumRingObstacle extends Obstacle {
     public MediumRingObstacle(double centerX, double centerY) {
         super(centerX, centerY, 0, 4);
         try {
-//            ring = FXMLLoader.load(getClass().getResource("/resources/views/ringObstacle/mediumRingObstacle.fxml"));
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/views/ringObstacle/mediumRingObstacle.fxml"));
+//            ring = FXMLLoader.load(getClass().getResource("/resources/views/ringObstacle/mediumRingObstacle2.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/views/ringObstacle/mediumRingObstacle2.fxml"));
             RingController controller = new RingController(1500 + new Random().nextInt(1000));
             loader.setController(controller);
             ring = loader.load();
@@ -54,7 +54,7 @@ public class MediumRingObstacle extends Obstacle {
 //                System.out.println("Rotating");
                 for(Node n : ring.getChildren()) {
                     if(((Path) Shape.intersect((Circle) ball.getNode(), (Shape)n)).getElements().size() > 0) {
-                        System.out.println("YOYOYOYO" + ((Shape) n).getStroke());
+//                        System.out.println("YOYOYOYO" + ((Shape) n).getStroke());
 
                         return true;
                     }
@@ -72,9 +72,15 @@ public class MediumRingObstacle extends Obstacle {
     }
 
     public boolean check(Ball ball) {
+        Shape intersect;
         for(Node n : ring.getChildren()) {
-            if (!((Shape)n).getStroke().toString().equals(ball.getColor().getColor().toString()) && ((Path) Shape.intersect((Circle) ball.getNode(), (Shape)n)).getElements().size() > 0) {
-                System.out.println(((Shape)n).getStroke() + " " + ball.getColor().getColor());
+//            intersect = Shape.intersect((Circle)ball.getNode(), (Shape)n);
+//            if(intersect.getBoundsInLocal().getWidth() != -1) {
+//                System.out.println(((Shape)n).getFill() + " " + ball.getColor().getColor());
+//                return true;
+//            }
+            if (!((Shape)n).getFill().toString().equals(ball.getColor().getColor().toString()) && ((Path) Shape.intersect((Circle) ball.getNode(), (Shape)n)).getElements().size() > 0) {
+                System.out.println(((Shape)n).getFill() + " " + ball.getColor().getColor());
                 return true;
             }
         }

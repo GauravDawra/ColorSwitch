@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.ArcTo?>
+<?import javafx.scene.shape.HLineTo?>
+<?import javafx.scene.shape.MoveTo?>
+<?import javafx.scene.shape.Path?>
+<?import javafx.scene.shape.VLineTo?>
+
+
+<AnchorPane fx:id="ringObstacle" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="176.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Path fill="#ecff00" fillRule="EVEN_ODD" layoutX="235.0" layoutY="189.0" rotate="90.0" stroke="BLACK" strokeLineCap="BUTT" strokeWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="87.5" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="87.5">
+          <elements>
+              <MoveTo />
+              <ArcTo radiusX="87.5" radiusY="87.5" sweepFlag="true" x="87.5" y="87.5" />
+            <HLineTo x="72.5" />
+            <ArcTo radiusX="72.5" radiusY="72.5" y="15.0" />
+            <VLineTo />
+          </elements>
+      </Path>
+      <Path fill="LIME" fillRule="EVEN_ODD" layoutX="235.0" layoutY="100.0" stroke="BLACK" strokeLineCap="BUTT" strokeWidth="0.0" AnchorPane.bottomAnchor="87.5" AnchorPane.leftAnchor="87.5" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <elements>
+            <MoveTo />
+            <ArcTo radiusX="87.5" radiusY="87.5" sweepFlag="true" x="87.5" y="87.5" />
+            <HLineTo x="72.5" />
+            <ArcTo radiusX="72.5" radiusY="72.5" y="15.0" />
+            <VLineTo />
+         </elements>
+      </Path>
+      <Path fill="#ff0094" fillRule="EVEN_ODD" layoutX="147.0" layoutY="189.0" rotate="180.0" stroke="BLACK" strokeLineCap="BUTT" strokeWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="87.5" AnchorPane.topAnchor="87.5">
+         <elements>
+            <MoveTo />
+            <ArcTo radiusX="87.5" radiusY="87.5" sweepFlag="true" x="87.5" y="87.5" />
+            <HLineTo x="72.5" />
+            <ArcTo radiusX="72.5" radiusY="72.5" y="15.0" />
+            <VLineTo />
+         </elements>
+      </Path>
+      <Path fill="AQUA" fillRule="EVEN_ODD" layoutX="147.0" layoutY="105.0" rotate="-90.0" stroke="BLACK" strokeLineCap="BUTT" strokeWidth="0.0" AnchorPane.bottomAnchor="87.5" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="87.5" AnchorPane.topAnchor="0.0">
+         <elements>
+            <MoveTo />
+            <ArcTo radiusX="87.5" radiusY="87.5" sweepFlag="true" x="87.5" y="87.5" />
+            <HLineTo x="72.5" />
+            <ArcTo radiusX="72.5" radiusY="72.5" y="15.0" />
+            <VLineTo />
+         </elements>
+      </Path>
+   </children>
+</AnchorPane>
