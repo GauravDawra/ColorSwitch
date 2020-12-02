@@ -155,9 +155,9 @@ public class Game extends Application implements Serializable {
                     System.out.println("obstacle collision");
                 }
                 
-//                if (ball.getPosition().getY() < 400) {
-//                    obstacles.setTranslateY(400 - ball.getPosition().getY());
-//                }
+                if (ball.getPosition().getY() < 400) {
+                    obstacles.setTranslateY(400 - ball.getPosition().getY());
+                }
 //                ball.setPosition();
 //                vel.setY(vel.getY() + 9.8/5.0);
 //                System.out.println(ball.getPosition());
