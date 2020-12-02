@@ -99,6 +99,7 @@ public class Game extends Application implements Serializable {
     @Override
     public void start(Stage primaryStage) throws Exception {
         /* All this code is just for testing right now*/
+        primaryStage.setResizable(false);
         AnchorPane sp = new AnchorPane();
         sp.setStyle("-fx-background-color: black;");
         sp.getChildren().add(ball.getNode());
