@@ -130,10 +130,8 @@ public class Game extends Application implements Serializable {
         Scene sc = new Scene(root);
         primaryStage.setScene(sc);
 
-        sc.setOnKeyPressed(event -> {
-            ball.jump();
-//                System.out.println("hello");
-        });
+        sc.setOnKeyPressed(event -> ball.jump());
+
         ring.bindToBall(ball);
         ring1.bindToBall(ball);
 
@@ -141,28 +139,25 @@ public class Game extends Application implements Serializable {
 
 //        Circle cir = new Circle(10.0, Color.GREEN); //(Circle) ball.getNode();
 //        sp.getChildren().add(cir);
-        Vector vel = new Vector();
+//        Vector vel = new Vector();
         new AnimationTimer() {
             @Override
             public void handle(long now) {
 
                 ball.setPosition(ball.getPosition().getX(), ball.getPosition().getY() + ball.getVelocity().getY() / 5.0);
-//                cir.setCenterY(cir.getCenterY() + vel.getY() / 5.0);
-//                cir.setLayoutY(cir.getLayoutY() + vel.getY() / 5.0);
                 ball.setVelocityY(ball.getVelocity().getY() + 9.8 / 5.0);
-//                if(((Path) Shape.intersect((Circle)ball.getNode(), (Shape) pallete.getNode())).getElements().size() > 0)
-//                    pallete.setVisibility(false);
+
                 if(pallete.check(ball)) {
-//                    System.out.println("yo");
+                    System.out.println("yo");
                     ball.setColor(pallete.getRandomColor(ball.getColor()));
                 }
                 if(ring.check(ball)) {
                     System.out.println("obstacle collision");
                 }
                 
-                if (ball.getPosition().getY() < 400) {
-                    obstacles.setTranslateY(400 - ball.getPosition().getY());
-                }
+//                if (ball.getPosition().getY() < 400) {
+//                    obstacles.setTranslateY(400 - ball.getPosition().getY());
+//                }
 //                ball.setPosition();
 //                vel.setY(vel.getY() + 9.8/5.0);
 //                System.out.println(ball.getPosition());
