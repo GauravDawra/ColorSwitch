@@ -156,7 +156,12 @@ public class Game extends Application implements Serializable {
                 }
                 
                 if (ball.getPosition().getY() < 400) {
-                    obstacles.setTranslateY(400 - ball.getPosition().getY());
+                    double diff = WIDTH / 2 - ball.getPosition().getY();
+                    double obstaclePosition = diff - obstacles.getLayoutBounds().getMinY();
+                    if (obstaclePosition > obstacles.getLayoutY()) {
+                        obstacles.setTranslateY(diff);
+                        obstacles.setLayoutY(obstaclePosition);
+                    }
                 }
 //                ball.setPosition();
 //                vel.setY(vel.getY() + 9.8/5.0);
