@@ -117,15 +117,15 @@ public class Game extends Application implements Serializable {
         ColorPalette pallete = new ColorPalette(WIDTH / 2, 500);
         //background.getChildren().add(pallete.getNode());
         MediumRingObstacle ring = new MediumRingObstacle(WIDTH / 2, 500);
-        MediumRingObstacle ring1 = new MediumRingObstacle(WIDTH / 2, 200);
-        obstacles.getChildren().addAll(ring.getNode(), ring1.getNode());
+        MediumRingObstacle ring1 = new MediumRingObstacle(WIDTH / 2, 150);
+        obstacles.getChildren().addAll(ring.getNode(), ring1.getNode(), ball.getNode());
 
-        player.getChildren().add(ball.getNode());
-        System.out.println(ball.getNode().getClass());
+//        player.getChildren().add(ball.getNode());
+//        System.out.println(ball.getNode().getClass());
 
         root.getChildren().add(background);
         root.getChildren().add(obstacles);
-        root.getChildren().add(player);
+//        root.getChildren().add(player);
 
         Scene sc = new Scene(root);
         primaryStage.setScene(sc);
@@ -140,29 +140,28 @@ public class Game extends Application implements Serializable {
 //        Circle cir = new Circle(10.0, Color.GREEN); //(Circle) ball.getNode();
 //        sp.getChildren().add(cir);
 //        Vector vel = new Vector();
+        MediumRingObstacle  ring2 = new MediumRingObstacle(WIDTH/2, -300);
+        ColorPalette pal =new ColorPalette(WIDTH/2, 300);
+        pal.bindToBall(ball);
+        obstacles.getChildren().addAll(ring2.getNode(), pal.getNode());
+        System.out.println(obstacles.getTranslateY());
         new AnimationTimer() {
+            double Min = HEIGHT/2;
             @Override
             public void handle(long now) {
 
                 ball.setPosition(ball.getPosition().getX(), ball.getPosition().getY() + ball.getVelocity().getY() / 5.0);
-                ball.setVelocityY(ball.getVelocity().getY() + 9.8 / 5.0);
 
-                if(pallete.check(ball)) {
-                    System.out.println("yo");
-                    ball.setColor(pallete.getRandomColor(ball.getColor()));
-                }
-                if(ring.check(ball)) {
-                    System.out.println("obstacle collision");
-                }
-                
-                if (ball.getPosition().getY() < 400) {
-                    double diff = WIDTH / 2 - ball.getPosition().getY();
-                    double obstaclePosition = diff - obstacles.getLayoutBounds().getMinY();
-                    if (obstaclePosition > obstacles.getLayoutY()) {
-                        obstacles.setTranslateY(diff);
-                        obstacles.setLayoutY(obstaclePosition);
-                    }
-                }
+                ball.setVelocityY(ball.getVelocity().getY() + 9.8 / 5.0);
+//                obstacles.setTranslateY(obstacles.getTranslateY() + 1);
+                Min = Math.min(Min, ball.getPosition().getY());
+                obstacles.setTranslateY(-Min + HEIGHT/2.0);
+                ring.getNoOfColors(); // ignore
+                pal.isVisible();
+//                if (ball.getPosition().getY() + ball.getVelocity().getY() / 5.0 < 400) {
+//                    obstacles.setTranslateY(obstacles.getTranslateY() + 1);
+//                    ball.setVelocityY(0.0);
+//                }
 //                ball.setPosition();
 //                vel.setY(vel.getY() + 9.8/5.0);
 //                System.out.println(ball.getPosition());

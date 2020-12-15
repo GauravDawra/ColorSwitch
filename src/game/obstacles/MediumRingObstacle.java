@@ -51,7 +51,7 @@ public class MediumRingObstacle extends Obstacle {
         boo = Bindings.createBooleanBinding(new Callable<Boolean>() {
             @Override
             public Boolean call() throws Exception {
-                System.out.println("Rotating");
+//                System.out.println("Rotating");
                 for(Node n : ring.getChildren()) {
                     if(((Path) Shape.intersect((Circle) ball.getNode(), (Shape)n)).getElements().size() > 0) {
                         System.out.println("YOYOYOYO" + ((Shape) n).getFill());

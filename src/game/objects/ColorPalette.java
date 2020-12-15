@@ -2,8 +2,13 @@ package game.objects;
 
 import java.util.Random;
 import java.util.ResourceBundle;
+import java.util.concurrent.Callable;
 
 import game.GameObject;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -43,11 +48,12 @@ public class ColorPalette extends GameObject implements Removable {
     public void hide() {
         // code elided
         this.setVisibility(false);
+        pallete.setVisible(false);
     }
     
     @Override
     public void remove() {
-
+        hide();
     }
     
     @Override
@@ -58,6 +64,29 @@ public class ColorPalette extends GameObject implements Removable {
     @Override
     public Node getNode() {
         return pallete;
+    }
+
+    private BooleanBinding boo;
+    public void bindToBall(Ball ball) {
+        boo = Bindings.createBooleanBinding(new Callable<Boolean>() {
+            @Override
+            public Boolean call() throws Exception {
+//                return null;
+                if(check(ball)) {
+//                    System.out.println("Takkar");
+                    return true;
+                }
+                else return false;
+            }
+        }, ((Circle)ball.getNode()).centerYProperty());
+        boo.addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+//                if(newValue) System.out.println("takkar");
+                ball.setColor(getRandomColor(ball.getColor()));
+                remove();
+            }
+        });
     }
 
     public boolean check(Ball ball) {
