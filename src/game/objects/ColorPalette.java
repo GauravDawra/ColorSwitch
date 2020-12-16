@@ -23,11 +23,11 @@ public class ColorPalette extends GameObject implements Removable {
     private static ResourceBundle bundle = ResourceBundle.getBundle("resources.DimensionBundle");
     public static final double RADIUS = (Double) bundle.getObject("ColorPallete_radius");
 
-    private Random random;
+    private static Random random;
     private AnchorPane pallete;
     public ColorPalette(double centerX, double centerY) {
         super(centerX, centerY, true);
-        random = new Random();
+        if(random == null) random = new Random();
         try {
             pallete = FXMLLoader.load(getClass().getResource("/resources/views/colorPallete/colorPallete.fxml"));
             pallete.setLayoutX(centerX - RADIUS);
@@ -36,7 +36,7 @@ public class ColorPalette extends GameObject implements Removable {
         } catch(Exception e) {}
     }
 
-    public Color getRandomColor(Color c) {
+    public static Color getRandomColor(Color c) {
         Color cur = c;
         while(cur == c) {
             int index = random.nextInt(Color.values().length);
@@ -67,7 +67,7 @@ public class ColorPalette extends GameObject implements Removable {
     }
 
     private BooleanBinding boo;
-    private boolean done = false;
+    public boolean done = false;
 
     public void bindToBall(Ball ball) {
         boo = Bindings.createBooleanBinding(new Callable<Boolean>() {
@@ -98,6 +98,7 @@ public class ColorPalette extends GameObject implements Removable {
     public boolean check(Ball ball) {
         for(Node n : pallete.getChildren()) {
             if (((Path) Shape.intersect((Circle) ball.getNode(), (Shape)n)).getElements().size() > 0) {
+                done = true;
                 return true;
             }
         }

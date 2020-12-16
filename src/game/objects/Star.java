@@ -38,7 +38,12 @@ public class Star extends GameObject implements Removable {
 
     @Override
     public void remove() {
+        hide();
+    }
 
+    private void hide() {
+        this.setVisibility(false);
+        star.setVisible(false);
     }
 
     @Override

@@ -48,6 +48,10 @@ public class Game extends Application implements Serializable {
     private int score;
     private State state;
     private ArrayList<GameObject> component;
+    private ArrayList<Obstacle> obst_list;
+    private ArrayList<Star> star_list;
+    private ArrayList<ColorPalette> palette_list;
+
     private Date date;
 
     public Game() {
@@ -55,6 +59,9 @@ public class Game extends Application implements Serializable {
         this.state = State.PLAYING;
         this.date = java.util.Calendar.getInstance().getTime();
         this.component = new ArrayList<>();
+        this.obst_list = new ArrayList<>();
+        this.star_list = new ArrayList<>();
+        this.palette_list = new ArrayList<>();
         this.ball = new Ball(WIDTH / 2, 700);
     }
 
@@ -65,6 +72,10 @@ public class Game extends Application implements Serializable {
     public void setScore(int sc) {
         if(sc >= 0 && sc > getScore())
             this.score = sc;
+    }
+
+    public void increaseScore() {
+        this.score++;
     }
 
     public State getState() {
@@ -96,8 +107,14 @@ public class Game extends Application implements Serializable {
     }
 
     public void addComponent(GameObject obj) {
-        if(obj != null)
-            component.add(obj);
+        if(obj == null) return;
+//            component.add(obj);
+        if(obj instanceof Obstacle) obst_list.add((Obstacle)obj);
+        else if(obj instanceof Star) star_list.add((Star)obj);
+        else palette_list.add((ColorPalette)obj);
+
+        component.add(obj);
+
     }
 
     @Override
@@ -118,24 +135,9 @@ public class Game extends Application implements Serializable {
         background.setPrefSize(WIDTH, HEIGHT);
         background.setStyle("-fx-background-color: black;");
 
-//        ColorPalette pallete = new ColorPalette(WIDTH / 2, 500);
-//        //background.getChildren().add(pallete.getNode());
-//        MediumRingObstacle ring = new MediumRingObstacle(WIDTH / 2, 500);
-//        MediumRingObstacle ring1 = new MediumRingObstacle(WIDTH / 2, 150);
-//        addComponent(ring);
-//        addComponent(ring1);
-//
         root.getChildren().add(background);
         root.getChildren().add(obstacles);
-//
-//
-////        ring.bindToBall(ball);
-////        ring1.bindToBall(ball);
-//        MediumRingObstacle  ring2 = new MediumRingObstacle(WIDTH/2, -300);
-//        ColorPalette pal =new ColorPalette(WIDTH/2, 300);
-//        addComponent(pal);
-//        addComponent(ring2);
-////        pal.bindToBall(ball);
+
 
         Scene sc = new Scene((Parent) root);
         primaryStage.setScene(sc);
@@ -145,6 +147,7 @@ public class Game extends Application implements Serializable {
             double y = 500 - i * OBSTACLE_SPACING;
             addComponent(new MediumRingObstacle(x, y));
             addComponent(new Star(x, y));
+            addComponent(new ColorPalette(WIDTH/2, 500 - i * OBSTACLE_SPACING - OBSTACLE_SPACING / 2));
         }
         obstacles.getChildren().add(ball.getNode());
         for(GameObject o : component){
@@ -167,6 +170,7 @@ public class Game extends Application implements Serializable {
         );
         ballTime.setCycleCount(Timeline.INDEFINITE);
         ballTime.play();
+
         new AnimationTimer() {
             double Min = HEIGHT/2;
             int cnt = 0;
@@ -182,35 +186,58 @@ public class Game extends Application implements Serializable {
                     obstacles.setTranslateY(-Min + HEIGHT / 2.0);
                 }
 
-                for(int i=0;i<component.size();i++){
-                    GameObject o = component.get(i);
-                    if(o.getClass() == MediumRingObstacle.class && ((MediumRingObstacle)o).check(ball)){
-                        System.out.println("collide" + cnt++);
+
+                for(int i=0;i<obst_list.size();i++){
+                    Obstacle o = obst_list.get(i);
+                    if(((MediumRingObstacle)o).check(ball)){
+                        System.out.println("collide"+cnt++);
                     }
-                    if (o.getClass() == Star.class && ((Star) o).check(ball)) {
+                    if(o.getPosition().getY() > -obstacles.getTranslateY() + HEIGHT) {
+                        obst_list.remove(i);
+                        i--;
+                    }
+                }
+
+                for(int i=0;i<star_list.size();i++){
+                    Star o = star_list.get(i);
+                    if(o.check(ball)){
+                        o.remove();
+                        obstacles.getChildren().remove(o.getNode());
+                        increaseScore();
+                    }
+                    if(o.getPosition().getY() > -obstacles.getTranslateY() + HEIGHT) {
+                        star_list.remove(i);
+                        i--;
+                    }
+                }
+
+                for(int i=0;i<palette_list.size();i++){
+                    ColorPalette o = palette_list.get(i);
+                    if(!o.done && o.check(ball)){
+//                        System.out.println("color change"+cnt++);
+                        ball.setColor(ColorPalette.getRandomColor(ball.getColor()));
+                        o.remove();
                         obstacles.getChildren().remove(o.getNode());
                     }
                     if(o.getPosition().getY() > -obstacles.getTranslateY() + HEIGHT) {
-                        component.remove(i);
+                        palette_list.remove(i);
                         i--;
                     }
-
                 }
-                if(component.get(component.size()-1).getPosition().getY() - OBSTACLE_SPACING + 100 > Min - HEIGHT/2) {
+
+                if(obst_list.get(obst_list.size()-1).getPosition().getY() - OBSTACLE_SPACING + 100 > Min - HEIGHT/2) {
+//                    component.add(new MediumRingObstacle(WIDTH/2, component.get(component.size()-1).getPosition().getY()-OBSTACLE_SPACING));
                     double x = WIDTH / 2;
-                    double y = component.get(component.size()-1).getPosition().getY()-OBSTACLE_SPACING;
-
-                    MediumRingObstacle newRing = new MediumRingObstacle(x, y);
-                    Star newStar = new Star(x, y);
-
-                    component.add(newRing);
-                    component.add(newStar);
-
-                    obstacles.getChildren().add(newRing.getNode());
-                    obstacles.getChildren().add(newStar.getNode());
+                    double y = obst_list.get(obst_list.size()-1).getPosition().getY()-OBSTACLE_SPACING;
+                    addComponent(new MediumRingObstacle(x, y));
+                    obstacles.getChildren().add(component.get(component.size()-1).getNode());
+                    addComponent(new ColorPalette(x, y-OBSTACLE_SPACING/2));
+                    obstacles.getChildren().add(component.get(component.size()-1).getNode());
+                    addComponent(new Star(WIDTH/2, y));
+                    obstacles.getChildren().add(component.get(component.size()-1).getNode());
 //                    ((MediumRingObstacle)component.get(component.size()-1)).bindToBall(ball);
                 }
-//                System.out.println(component.size());
+//                System.out.println(obst_list.size() + palette_list.size());
             }
         }.start();
 //        timer.start();
