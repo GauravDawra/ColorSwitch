@@ -2,6 +2,7 @@ package game;
 
 import game.objects.Ball;
 import game.objects.ColorPalette;
+import game.objects.Star;
 import game.obstacles.MediumRingObstacle;
 import javafx.animation.*;
 import javafx.application.Application;
@@ -140,9 +141,11 @@ public class Game extends Application implements Serializable {
         primaryStage.setScene(sc);
 
         for(int i=0;i<3;i++){
-            addComponent(new MediumRingObstacle(WIDTH/2, 500 - i * OBSTACLE_SPACING));
+            double x = WIDTH / 2;
+            double y = 500 - i * OBSTACLE_SPACING;
+            addComponent(new MediumRingObstacle(x, y));
+            addComponent(new Star(x, y));
         }
-
         obstacles.getChildren().add(ball.getNode());
         for(GameObject o : component){
             obstacles.getChildren().add(o.getNode());
@@ -180,8 +183,11 @@ public class Game extends Application implements Serializable {
 
                 for(int i=0;i<component.size();i++){
                     GameObject o = component.get(i);
-                    if(((MediumRingObstacle)o).check(ball)){
+                    if(o.getClass() == MediumRingObstacle.class && ((MediumRingObstacle)o).check(ball)){
                         System.out.println("collide");
+                    }
+                    if (o.getClass() == Star.class && ((Star) o).check(ball)) {
+                        obstacles.getChildren().remove(o.getNode());
                     }
                     if(o.getPosition().getY() > -obstacles.getTranslateY() + HEIGHT) {
                         component.remove(i);
@@ -190,8 +196,17 @@ public class Game extends Application implements Serializable {
 
                 }
                 if(component.get(component.size()-1).getPosition().getY() - OBSTACLE_SPACING + 100 > Min - HEIGHT/2) {
-                    component.add(new MediumRingObstacle(WIDTH/2, component.get(component.size()-1).getPosition().getY()-OBSTACLE_SPACING));
-                    obstacles.getChildren().add(component.get(component.size()-1).getNode());
+                    double x = WIDTH / 2;
+                    double y = component.get(component.size()-1).getPosition().getY()-OBSTACLE_SPACING;
+
+                    MediumRingObstacle newRing = new MediumRingObstacle(x, y);
+                    Star newStar = new Star(x, y);
+
+                    component.add(newRing);
+                    component.add(newStar);
+
+                    obstacles.getChildren().add(newRing.getNode());
+                    obstacles.getChildren().add(newStar.getNode());
 //                    ((MediumRingObstacle)component.get(component.size()-1)).bindToBall(ball);
                 }
 //                System.out.println(component.size());
