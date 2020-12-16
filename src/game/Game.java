@@ -3,8 +3,7 @@ package game;
 import game.objects.Ball;
 import game.objects.ColorPalette;
 import game.obstacles.MediumRingObstacle;
-import javafx.animation.Animation;
-import javafx.animation.AnimationTimer;
+import javafx.animation.*;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -20,9 +19,11 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Path;
 import javafx.scene.shape.Shape;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import util.Vector;
 
 import java.io.Serializable;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -145,43 +146,55 @@ public class Game extends Application implements Serializable {
         obstacles.getChildren().add(ball.getNode());
         for(GameObject o : component){
             obstacles.getChildren().add(o.getNode());
-//            if(o instanceof MediumRingObstacle)
-//                ((MediumRingObstacle)o).bindToBall(ball);
+//            ((MediumRingObstacle)o).bindToBall(ball);
         }
 
         sc.setOnKeyPressed(event -> ball.jump());
+        Timeline ballTime = new Timeline(
+                new KeyFrame(Duration.millis(20), ActionEvent -> {
+                    if(ball.getPosition().getY() >= HEIGHT){
+                        ball.setPosition(WIDTH/2, HEIGHT-10);
+                        ball.setVelocityY(0);
+                    }
+                    else {
+                        ball.setPosition(ball.getPosition().getX(), ball.getPosition().getY() + ball.getVelocity().getY() / 5.0);
+                        ball.setVelocityY(ball.getVelocity().getY() + 9.8 / 5.0);
+                    }
+                })
+        );
+        ballTime.setCycleCount(Timeline.INDEFINITE);
+        ballTime.play();
         new AnimationTimer() {
             double Min = HEIGHT/2;
             @Override
             public void handle(long now) {
 
-                ball.setPosition(ball.getPosition().getX(), ball.getPosition().getY() + ball.getVelocity().getY() / 5.0);
-
-                ball.setVelocityY(ball.getVelocity().getY() + 9.8 / 5.0);
+//                ball.setPosition(ball.getPosition().getX(), ball.getPosition().getY() + ball.getVelocity().getY() / 5.0);
+//
+//                ball.setVelocityY(ball.getVelocity().getY() + 9.8 / 5.0);
 
                 if(Min > ball.getPosition().getY()) {
                     Min = ball.getPosition().getY();
                     obstacles.setTranslateY(-Min + HEIGHT / 2.0);
                 }
-//                ring.getNoOfColors(); // ignore
-//                if(pal.isVisible()); // ignore
-//                System.out.println(obstacles.getTranslateY() + ", " + ball.getPosition().getY());
-//                for(GameObject o : component) {
+
                 for(int i=0;i<component.size();i++){
                     GameObject o = component.get(i);
+                    if(((MediumRingObstacle)o).check(ball)){
+                        System.out.println("collide");
+                    }
                     if(o.getPosition().getY() > -obstacles.getTranslateY() + HEIGHT) {
-//                        o.setVisibility(false);
                         component.remove(i);
                         i--;
-//                        System.out.println("YOHI");
                     }
 
                 }
                 if(component.get(component.size()-1).getPosition().getY() - OBSTACLE_SPACING + 100 > Min - HEIGHT/2) {
                     component.add(new MediumRingObstacle(WIDTH/2, component.get(component.size()-1).getPosition().getY()-OBSTACLE_SPACING));
                     obstacles.getChildren().add(component.get(component.size()-1).getNode());
+//                    ((MediumRingObstacle)component.get(component.size()-1)).bindToBall(ball);
                 }
-                System.out.println(component.size());
+//                System.out.println(component.size());
             }
         }.start();
 //        timer.start();

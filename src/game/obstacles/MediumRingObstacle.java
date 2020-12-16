@@ -54,7 +54,7 @@ public class MediumRingObstacle extends Obstacle {
 //                System.out.println("Rotating");
                 for(Node n : ring.getChildren()) {
                     if(((Path) Shape.intersect((Circle) ball.getNode(), (Shape)n)).getElements().size() > 0) {
-                        System.out.println("YOYOYOYO" + ((Shape) n).getFill());
+//                        System.out.println("YOYOYOYO" + ((Shape) n).getFill());
 
                         return true;
                     }
@@ -80,7 +80,7 @@ public class MediumRingObstacle extends Obstacle {
 //                return true;
 //            }
             if (!((Shape)n).getFill().toString().equals(ball.getColor().getColor().toString()) && ((Path) Shape.intersect((Circle) ball.getNode(), (Shape)n)).getElements().size() > 0) {
-                System.out.println(((Shape)n).getFill() + " " + ball.getColor().getColor());
+//                System.out.println(((Shape)n).getFill() + " " + ball.getColor().getColor());
                 return true;
             }
         }
