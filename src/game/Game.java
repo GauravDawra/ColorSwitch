@@ -151,9 +151,9 @@ public class Game extends Application implements Serializable {
 
         sc.setOnKeyPressed(event -> ball.jump());
         Timeline ballTime = new Timeline(
-                new KeyFrame(Duration.millis(20), ActionEvent -> {
-                    if(ball.getPosition().getY() >= HEIGHT){
-                        ball.setPosition(WIDTH/2, HEIGHT-10);
+                new KeyFrame(Duration.millis(16), ActionEvent -> {
+                    if(ball.getPosition().getY() + ball.getVelocity().getY() / 5.0 > HEIGHT-50){
+                        ball.setPosition(WIDTH/2, HEIGHT-50);
                         ball.setVelocityY(0);
                     }
                     else {
@@ -166,6 +166,7 @@ public class Game extends Application implements Serializable {
         ballTime.play();
         new AnimationTimer() {
             double Min = HEIGHT/2;
+            int cnt = 0;
             @Override
             public void handle(long now) {
 
@@ -181,7 +182,7 @@ public class Game extends Application implements Serializable {
                 for(int i=0;i<component.size();i++){
                     GameObject o = component.get(i);
                     if(((MediumRingObstacle)o).check(ball)){
-                        System.out.println("collide");
+                        System.out.println("collide"+cnt++);
                     }
                     if(o.getPosition().getY() > -obstacles.getTranslateY() + HEIGHT) {
                         component.remove(i);
