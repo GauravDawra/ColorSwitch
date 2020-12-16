@@ -19,6 +19,9 @@ public class SceneLoader {
     private SceneLoader() throws IOException {
         Parent mainPageParent = FXMLLoader.load(getClass().getResource("/mainPage/layout.fxml"));
         mainPage = new Scene(mainPageParent);
+
+        Parent pausePageParent = FXMLLoader.load(getClass().getResource("/pausePage/layout.fxml"));
+        pausePage = new Scene(pausePageParent);
     }
 
     public static SceneLoader getLoader() throws IOException{
@@ -30,5 +33,9 @@ public class SceneLoader {
 
     public Scene getMainPage() {
         return mainPage;
+    }
+
+    public Scene getPausePage() {
+        return pausePage;
     }
 }

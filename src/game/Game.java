@@ -1,5 +1,6 @@
 package game;
 
+import application.App;
 import game.objects.Ball;
 import game.objects.ColorPalette;
 import game.objects.Star;
@@ -13,19 +14,25 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Path;
 import javafx.scene.shape.Shape;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import sceneLoader.SceneLoader;
 import util.Vector;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.sql.Time;
 import java.util.ArrayList;
@@ -97,6 +104,19 @@ public class Game extends Application implements Serializable {
 
     public void pause() {
         setState(State.PAUSED);
+
+        try {
+            displayPausePage();
+        } catch (IOException e) {
+
+        }
+    }
+
+    private void displayPausePage() throws IOException {
+        Scene pausePage = SceneLoader.getLoader().getPausePage();
+        Stage window = App.getStage();
+        window.setScene(pausePage);
+        window.show();
     }
 
     public void exit() {
@@ -131,10 +151,24 @@ public class Game extends Application implements Serializable {
         Label scoreLbl = new Label();
 //        scoreLbl.textProperty().bind(new SimpleIntegerProperty(getScore()).asString());
         scoreLbl.setTextFill(Color.WHITE);
-        scoreLbl.setLayoutX(WIDTH - 50);
+        scoreLbl.setLayoutX(50);
         scoreLbl.setLayoutY(50);
-        scoreLbl.setFont(new Font("Arial", 32));
+        scoreLbl.setFont(new Font("Arial", 40));
         return scoreLbl;
+    }
+
+    private Node getPauseBtn() {
+        Ellipse pauseBtn = new Ellipse();
+        Image img = new Image("/sprites/button_pause.png");
+        ImagePattern ip = new ImagePattern(img);
+
+        pauseBtn.setFill(ip);
+        pauseBtn.setRadiusX((img.getWidth() / 2)+ 4);
+        pauseBtn.setRadiusY((img.getHeight() / 2)+ 4);
+        pauseBtn.setCenterX(WIDTH - 50);
+        pauseBtn.setCenterY(50);
+
+        return pauseBtn;
     }
 
     private void addInitialComponents() {
@@ -186,6 +220,9 @@ public class Game extends Application implements Serializable {
         primaryStage.setScene(sc);
 
         Label scoreLbl = getScoreLabel();
+        Node pauseBtn = getPauseBtn();
+
+        background.getChildren().addAll(pauseBtn, scoreLbl);
 
         addInitialComponents();
         elements.getChildren().add(ball.getNode());
@@ -206,6 +243,13 @@ public class Game extends Application implements Serializable {
 //                ball.setPosition(ball.getPosition().getX(), ball.getPosition().getY() + ball.getVelocity().getY() / 5.0);
 //
 //                ball.setVelocityY(ball.getVelocity().getY() + 9.8 / 5.0);
+
+                pauseBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        pause();
+                    }
+                });
 
                 if(Min > ball.getPosition().getY()) {
                     Min = ball.getPosition().getY();
