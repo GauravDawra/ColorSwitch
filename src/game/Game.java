@@ -6,11 +6,13 @@ import game.objects.Star;
 import game.obstacles.MediumRingObstacle;
 import javafx.animation.*;
 import javafx.application.Application;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -19,6 +21,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Path;
 import javafx.scene.shape.Shape;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import util.Vector;
@@ -65,7 +68,7 @@ public class Game extends Application implements Serializable {
         this.ball = new Ball(WIDTH / 2, 700);
     }
 
-    public int getScore() {
+    public Integer getScore() {
         return this.score;
     }
 
@@ -142,6 +145,14 @@ public class Game extends Application implements Serializable {
         Scene sc = new Scene((Parent) root);
         primaryStage.setScene(sc);
 
+        Label scoreLbl = new Label();
+//        scoreLbl.textProperty().bind(new SimpleIntegerProperty(getScore()).asString());
+        scoreLbl.setTextFill(Color.WHITE);
+        scoreLbl.setLayoutX(WIDTH - 50);
+        scoreLbl.setLayoutY(50);
+        scoreLbl.setFont(new Font("Arial", 32));
+        background.getChildren().add(scoreLbl);
+
         for(int i=0;i<3;i++){
             double x = WIDTH / 2;
             double y = 500 - i * OBSTACLE_SPACING;
@@ -193,6 +204,7 @@ public class Game extends Application implements Serializable {
                         System.out.println("collide"+cnt++);
                     }
                     if(o.getPosition().getY() > -obstacles.getTranslateY() + HEIGHT) {
+                        obstacles.getChildren().remove(o.getNode());
                         obst_list.remove(i);
                         i--;
                     }
@@ -200,12 +212,16 @@ public class Game extends Application implements Serializable {
 
                 for(int i=0;i<star_list.size();i++){
                     Star o = star_list.get(i);
-                    if(o.check(ball)){
+                    if(!o.done && o.check(ball)){
                         o.remove();
                         obstacles.getChildren().remove(o.getNode());
                         increaseScore();
+                        scoreLbl.setText(getScore().toString());
+//                        System.out.println("SCORE: " + score);
+
                     }
                     if(o.getPosition().getY() > -obstacles.getTranslateY() + HEIGHT) {
+                        obstacles.getChildren().remove(o.getNode());
                         star_list.remove(i);
                         i--;
                     }
@@ -220,6 +236,7 @@ public class Game extends Application implements Serializable {
                         obstacles.getChildren().remove(o.getNode());
                     }
                     if(o.getPosition().getY() > -obstacles.getTranslateY() + HEIGHT) {
+                        obstacles.getChildren().remove(o.getNode());
                         palette_list.remove(i);
                         i--;
                     }
