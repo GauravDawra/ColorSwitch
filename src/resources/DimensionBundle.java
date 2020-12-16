@@ -17,6 +17,7 @@ public class DimensionBundle extends ListResourceBundle {
             {"Gravity", new Double(5.0)},
             {"ColorPallete_radius", new Double(20.0)},
             {"MediumRingObstacle_radius", new Double(80.0)},
-            {"LargeRingObstacle_radius", new Double(100.0)}
+            {"LargeRingObstacle_radius", new Double(100.0)},
+            {"Obstacle_spacing", new Double(350.0)}
     };
 }

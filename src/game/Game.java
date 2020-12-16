@@ -39,6 +39,7 @@ public class Game extends Application implements Serializable {
     public static final double GRAVITY = (Double) bundle.getObject("Gravity");
     public static final int HEIGHT = (Integer) bundle.getObject("SCREEN_HEIGHT");
     public static final int WIDTH = (Integer) bundle.getObject("SCREEN_WIDTH");
+    public static final double OBSTACLE_SPACING = (Double) bundle.getObject("Obstacle_spacing");
 
     private Ball ball;
     private int score;
@@ -114,37 +115,40 @@ public class Game extends Application implements Serializable {
         background.setPrefSize(WIDTH, HEIGHT);
         background.setStyle("-fx-background-color: black;");
 
-        ColorPalette pallete = new ColorPalette(WIDTH / 2, 500);
-        //background.getChildren().add(pallete.getNode());
-        MediumRingObstacle ring = new MediumRingObstacle(WIDTH / 2, 500);
-        MediumRingObstacle ring1 = new MediumRingObstacle(WIDTH / 2, 150);
-        obstacles.getChildren().addAll(ring.getNode(), ring1.getNode(), ball.getNode());
-
-//        player.getChildren().add(ball.getNode());
-//        System.out.println(ball.getNode().getClass());
-
+//        ColorPalette pallete = new ColorPalette(WIDTH / 2, 500);
+//        //background.getChildren().add(pallete.getNode());
+//        MediumRingObstacle ring = new MediumRingObstacle(WIDTH / 2, 500);
+//        MediumRingObstacle ring1 = new MediumRingObstacle(WIDTH / 2, 150);
+//        addComponent(ring);
+//        addComponent(ring1);
+//
         root.getChildren().add(background);
         root.getChildren().add(obstacles);
-//        root.getChildren().add(player);
+//
+//
+////        ring.bindToBall(ball);
+////        ring1.bindToBall(ball);
+//        MediumRingObstacle  ring2 = new MediumRingObstacle(WIDTH/2, -300);
+//        ColorPalette pal =new ColorPalette(WIDTH/2, 300);
+//        addComponent(pal);
+//        addComponent(ring2);
+////        pal.bindToBall(ball);
 
         Scene sc = new Scene(root);
         primaryStage.setScene(sc);
 
+        for(int i=0;i<3;i++){
+            addComponent(new MediumRingObstacle(WIDTH/2, 500 - i * OBSTACLE_SPACING));
+        }
+
+        obstacles.getChildren().add(ball.getNode());
+        for(GameObject o : component){
+            obstacles.getChildren().add(o.getNode());
+//            if(o instanceof MediumRingObstacle)
+//                ((MediumRingObstacle)o).bindToBall(ball);
+        }
+
         sc.setOnKeyPressed(event -> ball.jump());
-
-        ring.bindToBall(ball);
-        ring1.bindToBall(ball);
-
-//        ball.getNode().centerY
-
-//        Circle cir = new Circle(10.0, Color.GREEN); //(Circle) ball.getNode();
-//        sp.getChildren().add(cir);
-//        Vector vel = new Vector();
-        MediumRingObstacle  ring2 = new MediumRingObstacle(WIDTH/2, -300);
-        ColorPalette pal =new ColorPalette(WIDTH/2, 300);
-        pal.bindToBall(ball);
-        obstacles.getChildren().addAll(ring2.getNode(), pal.getNode());
-        System.out.println(obstacles.getTranslateY());
         new AnimationTimer() {
             double Min = HEIGHT/2;
             @Override
@@ -153,18 +157,30 @@ public class Game extends Application implements Serializable {
                 ball.setPosition(ball.getPosition().getX(), ball.getPosition().getY() + ball.getVelocity().getY() / 5.0);
 
                 ball.setVelocityY(ball.getVelocity().getY() + 9.8 / 5.0);
-//                obstacles.setTranslateY(obstacles.getTranslateY() + 1);
-                Min = Math.min(Min, ball.getPosition().getY());
-                obstacles.setTranslateY(-Min + HEIGHT/2.0);
-                ring.getNoOfColors(); // ignore
-                pal.isVisible();
-//                if (ball.getPosition().getY() + ball.getVelocity().getY() / 5.0 < 400) {
-//                    obstacles.setTranslateY(obstacles.getTranslateY() + 1);
-//                    ball.setVelocityY(0.0);
-//                }
-//                ball.setPosition();
-//                vel.setY(vel.getY() + 9.8/5.0);
-//                System.out.println(ball.getPosition());
+
+                if(Min > ball.getPosition().getY()) {
+                    Min = ball.getPosition().getY();
+                    obstacles.setTranslateY(-Min + HEIGHT / 2.0);
+                }
+//                ring.getNoOfColors(); // ignore
+//                if(pal.isVisible()); // ignore
+//                System.out.println(obstacles.getTranslateY() + ", " + ball.getPosition().getY());
+//                for(GameObject o : component) {
+                for(int i=0;i<component.size();i++){
+                    GameObject o = component.get(i);
+                    if(o.getPosition().getY() > -obstacles.getTranslateY() + HEIGHT) {
+//                        o.setVisibility(false);
+                        component.remove(i);
+                        i--;
+//                        System.out.println("YOHI");
+                    }
+
+                }
+                if(component.get(component.size()-1).getPosition().getY() - OBSTACLE_SPACING + 100 > Min - HEIGHT/2) {
+                    component.add(new MediumRingObstacle(WIDTH/2, component.get(component.size()-1).getPosition().getY()-OBSTACLE_SPACING));
+                    obstacles.getChildren().add(component.get(component.size()-1).getNode());
+                }
+                System.out.println(component.size());
             }
         }.start();
 //        timer.start();

@@ -67,13 +67,20 @@ public class ColorPalette extends GameObject implements Removable {
     }
 
     private BooleanBinding boo;
+    private boolean done = false;
+
     public void bindToBall(Ball ball) {
         boo = Bindings.createBooleanBinding(new Callable<Boolean>() {
             @Override
             public Boolean call() throws Exception {
 //                return null;
-                if(check(ball)) {
+                if(check(ball) && !done) {
 //                    System.out.println("Takkar");
+                    ball.setColor(getRandomColor(ball.getColor()));
+                    remove();
+                    System.out.println("done");
+                    boo = null;
+                    done = true;
                     return true;
                 }
                 else return false;
@@ -83,8 +90,7 @@ public class ColorPalette extends GameObject implements Removable {
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
 //                if(newValue) System.out.println("takkar");
-                ball.setColor(getRandomColor(ball.getColor()));
-                remove();
+
             }
         });
     }

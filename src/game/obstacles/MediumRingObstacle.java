@@ -62,7 +62,7 @@ public class MediumRingObstacle extends Obstacle {
                 return false;
 //                return check(ball);
             }
-        }, ((Circle)ball.getNode()).centerYProperty(), ring.rotateProperty());
+        }, ((Circle)ball.getNode()).centerYProperty());
         boo.addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
