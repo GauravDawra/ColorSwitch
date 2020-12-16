@@ -9,6 +9,7 @@ import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -75,7 +76,7 @@ public class Game extends Application implements Serializable {
     public void play(String []args) {
         setState(State.PLAYING);
         // ...
-        launch();
+//        launch();
     }
 
     public void pause() {
@@ -134,7 +135,7 @@ public class Game extends Application implements Serializable {
 //        addComponent(ring2);
 ////        pal.bindToBall(ball);
 
-        Scene sc = new Scene(root);
+        Scene sc = new Scene((Parent) root);
         primaryStage.setScene(sc);
 
         for(int i=0;i<3;i++){

@@ -1,5 +1,7 @@
 package mainPage;
 
+import application.App;
+import game.Game;
 import javafx.animation.Animation;
 import javafx.animation.Interpolator;
 import javafx.animation.RotateTransition;
@@ -70,8 +72,12 @@ public class Controller implements Initializable {
         System.out.println(keyEvent.getSource().toString());
     }
 
-    public void playPressed(MouseEvent mouseEvent) {
+    public void playPressed(MouseEvent mouseEvent) throws Exception{
         System.out.println("play pressed");
+        Game g = new Game();
+        App.getInstance().setCurrentGame(g);
+        g.start(App.getStage());
+//        g.play(App.getInstance().getArgs());
     }
 
 }

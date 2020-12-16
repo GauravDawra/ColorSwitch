@@ -1,6 +1,7 @@
 package sample;
 
 import game.Game;
+import application.App;
 import game.objects.Ball;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -41,8 +42,8 @@ public class Main extends Application {
 //        v.add(new Vector(1,2));
 //        System.out.println(v);
 //        launch(args);
-        Game g = new Game();
-
-        g.play(args);
+//        Game g = new Game();
+            App a = App.getInstance();
+            a.startApp(args);
     }
 }

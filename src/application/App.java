@@ -2,22 +2,63 @@ package application;
 
 import game.Obstacle;
 import game.Game;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import sceneLoader.SceneLoader;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class App implements Serializable {
+public class App extends Application implements Serializable {
+    private static App colorSwitch = null;
+    private static Stage stage = null;
+
+    private static ResourceBundle bundle = ResourceBundle.getBundle("resources.DimensionBundle");
+
+    public static final int HEIGHT = (Integer) bundle.getObject("SCREEN_HEIGHT");
+    public static final int WIDTH = (Integer) bundle.getObject("SCREEN_WIDTH");
+
     private int numOfStars;
     private int bestScore;
     private ArrayList<Game> pastGames;
     private ArrayList<Obstacle> OBSTACLE_LIST;
     private Game currentGame;
 
-    App() {
+    public App() {
         pastGames = new ArrayList<Game>();
         OBSTACLE_LIST = new ArrayList<Obstacle>();
         currentGame = new Game();
         numOfStars = 0;
+    }
+
+    public void startApp(String []args) {
+        launch();
+    }
+
+    @Override
+    public void start(Stage stage) throws Exception {
+        this.stage = stage;
+        stage.setTitle("Color Switch");
+//        stage.setHeight(HEIGHT);
+//        stage.setWidth(WIDTH);
+        stage.setResizable(false);
+
+        Scene sc = SceneLoader.getLoader().getMainPage();
+        stage.setScene(sc);
+        stage.show();
+    }
+
+    public static App getInstance() {
+        if (colorSwitch == null) {
+            colorSwitch = new App();
+        }
+        return colorSwitch;
+    }
+
+    public static Stage getStage() {
+        return stage;
     }
 
     public int getNumOfStars() {
