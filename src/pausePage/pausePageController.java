@@ -61,6 +61,7 @@ public class pausePageController implements Initializable {
     public void saveBtnPressed(MouseEvent mouseEvent){
         App.getInstance().saveCurrentGame();
         backPressed(mouseEvent);
+        hide();
     }
     public void setScore(Integer score) {
 //        System.out.println("HELLOOOOOOOOOO");

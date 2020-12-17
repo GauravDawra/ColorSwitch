@@ -342,8 +342,9 @@ public class Game extends Application implements Serializable {
                 for(int i=0;i<obst_list.size();i++){
                     Obstacle o = obst_list.get(i);
                     if(o.check(ball)){
-                        System.out.println("collide"+cnt++);
+//                        System.out.println("collide"+cnt++);
                         if (!isReviveUsed && score > 2) {
+                            pause();
                             continueGameController.show();
                         } else if (!continueGameController.visibility()){
                             ball.setVelocityY(0);
