@@ -241,16 +241,16 @@ public class Game extends Application implements Serializable {
 
     private void moveBall() {
         Timeline ballTime = new Timeline(
-                new KeyFrame(Duration.millis(16), ActionEvent -> {
-                    if(ball.getPosition().getY() + ball.getVelocity().getY() / 5.0 > HEIGHT-50){
-                        ball.setPosition(WIDTH/2, HEIGHT-50);
-                        ball.setVelocityY(0);
-                    }
-                    else {
-                        ball.setPosition(ball.getPosition().getX(), ball.getPosition().getY() + ball.getVelocity().getY() / 5.0);
-                        ball.setVelocityY(ball.getVelocity().getY() + 9.8 / 5.0);
-                    }
-                })
+            new KeyFrame(Duration.millis(16), ActionEvent -> {
+                if(ball.getPosition().getY() + ball.getVelocity().getY() / 5.0 > HEIGHT-50){
+                    ball.setPosition(WIDTH/2, HEIGHT-50);
+                    ball.setVelocityY(0);
+                }
+                else {
+                    ball.setPosition(ball.getPosition().getX(), ball.getPosition().getY() + ball.getVelocity().getY() / 5.0);
+                    ball.setVelocityY(ball.getVelocity().getY() + 9.8 / 5.0);
+                }
+            })
         );
         ballTime.setCycleCount(Timeline.INDEFINITE);
         ballTime.play();
@@ -300,7 +300,7 @@ public class Game extends Application implements Serializable {
 
             @Override
             public void handle(long now) {
-
+                if(getState() == State.EXIT) this.stop();
                 play();
 
                 if(Min > ball.getPosition().getY()) {
