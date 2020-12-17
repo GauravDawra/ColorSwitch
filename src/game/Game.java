@@ -131,6 +131,7 @@ public class Game extends Application implements Serializable {
             SceneLoader.getLoader().setScore(getScore());
         } catch(Exception e){}
         pausePageController.show();
+        handlePopupVisibility();
     }
 
     public void exit() {
