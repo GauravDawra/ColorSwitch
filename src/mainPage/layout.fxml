@@ -38,7 +38,7 @@
       </Label>
       <Button fx:id="btn" layoutX="273.0" layoutY="531.0" mnemonicParsing="false" onAction="#loadPressed" prefHeight="135.0" prefWidth="145.0" style="-fx-background-radius: 100%; -fx-background-color: #0ff000;" text="Load game">
          <font>
-            <Font name="Andale Mono" size="23.0" />
+            <Font name="Andale Mono" size="18.0" />
          </font></Button>
       <AnchorPane fx:id="playGroup" layoutX="198.0" layoutY="216.0" prefHeight="270.0" prefWidth="270.0" AnchorPane.leftAnchor="198.0" AnchorPane.rightAnchor="197.0">
          <children>
