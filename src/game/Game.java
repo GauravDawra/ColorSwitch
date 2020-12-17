@@ -70,6 +70,7 @@ public class Game extends Application implements Serializable {
 
     private Popup pausePopup;
     private Popup revivePopup;
+    private boolean isReviveUsed;
 
     public Game() {
         this.score = 0;
@@ -79,6 +80,7 @@ public class Game extends Application implements Serializable {
         this.obst_list = new ArrayList<>();
         this.star_list = new ArrayList<>();
         this.palette_list = new ArrayList<>();
+        this.isReviveUsed = false;
         this.ball = new Ball(WIDTH / 2, 700);
         try {
             setPausePage();
@@ -152,8 +154,11 @@ public class Game extends Application implements Serializable {
 
             if (continueGameController.visibility()) {
                 revivePopup.show(App.getStage());
+                ball.setVelocityY(0);
+                isReviveUsed = true;
             } else {
                 revivePopup.hide();
+                if (isReviveUsed) revivePopup = null;
             }
         } catch (Exception e) {}
     }
