@@ -71,6 +71,7 @@ public class MediumRingObstacle extends Obstacle {
         });
     }
 
+    @Override
     public boolean check(Ball ball) {
         Shape intersect;
         for(Node n : ring.getChildren()) {

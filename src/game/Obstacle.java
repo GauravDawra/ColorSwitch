@@ -1,5 +1,6 @@
 package game;
 
+import game.objects.Ball;
 import javafx.scene.Node;
 import util.Movable;
 
@@ -34,5 +35,9 @@ public class Obstacle extends GameObject implements Movable {
     @Override
     public void move() {
         
+    }
+
+    public boolean check(Ball ball) {
+        return false;
     }
 }

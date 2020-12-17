@@ -6,6 +6,7 @@ import game.objects.Ball;
 import game.objects.ColorPalette;
 import game.objects.Star;
 import game.obstacles.MediumRingObstacle;
+import game.obstacles.WindmillObstacle;
 import javafx.animation.*;
 import javafx.application.Application;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -208,10 +209,12 @@ public class Game extends Application implements Serializable {
         for(int i=0;i<3;i++){
             double x = WIDTH / 2;
             double y = 500 - i * OBSTACLE_SPACING;
-            addComponent(new MediumRingObstacle(x, y));
+//            addComponent(new MediumRingObstacle(x, y));
+            addComponent(ObstacleSelector.getRandomObstacle(x,y));
             addComponent(new Star(x, y));
             addComponent(new ColorPalette(WIDTH/2, y - OBSTACLE_SPACING / 2));
         }
+//        addComponent(new WindmillObstacle(100, 100));
     }
 
     private void moveBall() {
@@ -264,7 +267,9 @@ public class Game extends Application implements Serializable {
 //            ((MediumRingObstacle)o).bindToBall(ball);
         }
 
+        // Click evets mentioned here
         sc.setOnKeyPressed(event -> ball.jump());
+        pauseBtn.setOnMouseClicked(mouseEvent -> pause());
         moveBall();
 
         new AnimationTimer() {
@@ -277,13 +282,6 @@ public class Game extends Application implements Serializable {
 //
 //                ball.setVelocityY(ball.getVelocity().getY() + 9.8 / 5.0);
 
-                pauseBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent mouseEvent) {
-                        pause();
-                    }
-                });
-
                 if(Min > ball.getPosition().getY()) {
                     Min = ball.getPosition().getY();
                     elements.setTranslateY(-Min + HEIGHT / 2.0);
@@ -293,7 +291,7 @@ public class Game extends Application implements Serializable {
 
                 for(int i=0;i<obst_list.size();i++){
                     Obstacle o = obst_list.get(i);
-                    if(((MediumRingObstacle)o).check(ball)){
+                    if(o.check(ball)){
                         System.out.println("collide"+cnt++);
                         if (score > 2) {
                             continueGameController.show();
@@ -342,7 +340,8 @@ public class Game extends Application implements Serializable {
 //                    component.add(new MediumRingObstacle(WIDTH/2, component.get(component.size()-1).getPosition().getY()-OBSTACLE_SPACING));
                     double x = WIDTH / 2;
                     double y = obst_list.get(obst_list.size()-1).getPosition().getY()-OBSTACLE_SPACING;
-                    addComponent(new MediumRingObstacle(x, y));
+//                    addComponent(new MediumRingObstacle(x, y));
+                    addComponent(ObstacleSelector.getRandomObstacle(x,y));
                     elements.getChildren().add(component.get(component.size()-1).getNode());
                     addComponent(new ColorPalette(x, y-OBSTACLE_SPACING/2));
                     elements.getChildren().add(component.get(component.size()-1).getNode());

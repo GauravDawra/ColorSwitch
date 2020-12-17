@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.ArcTo?>
+<?import javafx.scene.shape.HLineTo?>
+<?import javafx.scene.shape.MoveTo?>
+<?import javafx.scene.shape.Path?>
+<?import javafx.scene.shape.VLineTo?>
+
+
+<AnchorPane fx:id="windmill" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Path fill="LIME" layoutX="493.0" layoutY="126.0" stroke="BLACK" strokeWidth="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="107.5">
+          <elements>
+              <MoveTo />
+            <HLineTo x="100.0" />
+            <ArcTo radiusX="7.5" radiusY="7.5" sweepFlag="true" x="100.0" y="15.0" />
+            <HLineTo />
+            <VLineTo />
+          </elements>
+      </Path>
+      <Path fill="#ff0094" layoutX="368.5" layoutY="108.0" rotate="180.0" stroke="BLACK" strokeWidth="0.0" AnchorPane.rightAnchor="122.5" AnchorPane.topAnchor="107.5">
+         <elements>
+            <MoveTo />
+            <HLineTo x="100.0" />
+            <ArcTo radiusX="7.5" radiusY="7.5" sweepFlag="true" x="100.0" y="15.0" />
+            <HLineTo />
+            <VLineTo />
+         </elements>
+      </Path>
+      <Path fill="#ecff00" layoutX="476.0" layoutY="0.5" stroke="BLACK" strokeWidth="0.0" AnchorPane.rightAnchor="108.0" AnchorPane.topAnchor="0.0">
+         <elements>
+            <MoveTo y="107.5" />
+            <VLineTo y="7.5" />
+            <ArcTo radiusX="7.5" radiusY="7.5" sweepFlag="true" x="15.0" y="7.5" />
+            <VLineTo y="107.5" />
+            <HLineTo />
+         </elements>
+      </Path>
+      <Path fill="AQUA" layoutX="477.0" layoutY="128.0" rotate="180.0" stroke="BLACK" strokeWidth="0.0" AnchorPane.rightAnchor="108.0" AnchorPane.topAnchor="122.5">
+         <elements>
+            <MoveTo y="107.5" />
+            <VLineTo y="7.5" />
+            <ArcTo radiusX="7.5" radiusY="7.5" sweepFlag="true" x="15.0" y="7.5" />
+            <VLineTo y="107.5" />
+            <HLineTo />
+         </elements>
+      </Path>
+   </children>
+</AnchorPane>
