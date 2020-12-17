@@ -48,7 +48,7 @@ public class WindmillObstacle extends Obstacle {
     @Override
     public boolean check(Ball ball) {
         Shape intersect;
-        for(Node n : windmill.getChildren()) {
+        for(Node n : ((AnchorPane)getNode()).getChildren()) {
 //            intersect = Shape.intersect((Circle)ball.getNode(), (Shape)n);
 //            if(intersect.getBoundsInLocal().getWidth() != -1) {
 //                System.out.println(((Shape)n).getFill() + " " + ball.getColor().getColor());

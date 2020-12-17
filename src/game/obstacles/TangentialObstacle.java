@@ -55,7 +55,7 @@ public class TangentialObstacle extends Obstacle {
     @Override
     public boolean check(Ball ball) {
         Shape intersect;
-        for(Node n : ((AnchorPane)ring.getChildren().get(0)).getChildren()) {
+        for(Node n : ((AnchorPane)((AnchorPane)getNode()).getChildren().get(0)).getChildren()) {
 //            intersect = Shape.intersect((Circle)ball.getNode(), (Shape)n);
 //            if(intersect.getBoundsInLocal().getWidth() != -1) {
 //                System.out.println(((Shape)n).getFill() + " " + ball.getColor().getColor());

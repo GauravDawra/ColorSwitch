@@ -3,6 +3,7 @@ package game.objects;
 import game.GameObject;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
@@ -63,7 +64,7 @@ public class Star extends GameObject implements Removable {
 
     public boolean done = false;
     public boolean check(Ball ball) {
-        if (((Path) Shape.intersect((Circle) ball.getNode(), star)).getElements().size() > 0) {
+        if (((Path) Shape.intersect((Circle) ball.getNode(), ((Ellipse)getNode()))).getElements().size() > 0) {
             done = true;
             return true;
         }

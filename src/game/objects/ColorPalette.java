@@ -101,7 +101,7 @@ public class ColorPalette extends GameObject implements Removable {
     }
 
     public boolean check(Ball ball) {
-        for(Node n : pallete.getChildren()) {
+        for(Node n : ((AnchorPane)getNode()).getChildren()) {
             if (((Path) Shape.intersect((Circle) ball.getNode(), (Shape)n)).getElements().size() > 0) {
                 done = true;
                 return true;

@@ -39,7 +39,7 @@ public class LargeRingObstacle extends Obstacle {
 
 
     public boolean check(Ball ball) {
-        for(Node n : ring.getChildren()) {
+        for(Node n : ((AnchorPane)getNode()).getChildren()) {
             if (((Path) Shape.intersect((Circle) ball.getNode(), (Shape)n)).getElements().size() > 0) {
                 return true;
             }
