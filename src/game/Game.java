@@ -133,11 +133,17 @@ public class Game extends Application implements Serializable {
         pausePageController.show();
         handlePopupVisibility();
     }
-
+    private boolean doneAdd = false;
     public void exit() {
+
         setState(State.EXIT);
         App.getInstance().setBestScore(Math.max(App.getInstance().getBestScore(), getScore()));
-        App.getInstance().addNumOfStars(getScore());
+//        System.out.println("YO");
+        if(!doneAdd) {
+            App.getInstance().addNumOfStars(getScore());
+            doneAdd = true;
+        }
+//        System.out.println("SCOREEEE: " + getScore());
 
         try {
             SceneLoader.getLoader().setScore(getScore());
@@ -348,7 +354,8 @@ public class Game extends Application implements Serializable {
                         if (!isReviveUsed && score > 2) {
                             pause();
                             continueGameController.show();
-                        } else if (!continueGameController.visibility()){
+                            cnt = 0;
+                        } else if (!continueGameController.visibility() && getState()!=State.EXIT){
                             ball.setVelocityY(0);
                             exit();
                         }
@@ -453,8 +460,9 @@ public class Game extends Application implements Serializable {
                 for(int i=0;i<obst_list.size();i++){
                     Obstacle o = obst_list.get(i);
                     if(o.check(ball)){
-                        System.out.println("collide"+cnt++);
+//                        System.out.println("collide"+cnt++);
                         if (!isReviveUsed && score > 2) {
+//                            pause();
                             continueGameController.show();
                         } else if (!continueGameController.visibility()){
                             ball.setVelocityY(0);

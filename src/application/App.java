@@ -79,6 +79,7 @@ public class App extends Application implements Serializable {
     }
 
     public void addNumOfStars(int numOfStars) {
+        System.out.println("CALLED");
         this.numOfStars += numOfStars;
     }
 

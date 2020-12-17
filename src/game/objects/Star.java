@@ -3,6 +3,7 @@ package game.objects;
 import game.GameObject;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -45,9 +46,10 @@ public class Star extends GameObject implements Removable {
 
     @Override
     public void createObstacle() {
-        Image img = new Image("/sprites/star.png");
-        ImagePattern ip = new ImagePattern(img);
+        Image img = new Image("/sprites/star.png", 30, 30, false, false);
 
+        ImagePattern ip = new ImagePattern(img);
+//        img.set
         star = new Ellipse();
         star.setFill(ip);
         star.setRadiusX((img.getWidth() / 2)+ 4);

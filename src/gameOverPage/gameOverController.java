@@ -7,6 +7,7 @@ import javafx.animation.Interpolator;
 import javafx.animation.ScaleTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
@@ -25,6 +26,9 @@ public class gameOverController implements Initializable {
 
     @FXML
     private Text bestScore;
+
+    @FXML
+    private Label totalScore;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -62,6 +66,7 @@ public class gameOverController implements Initializable {
 
     public void setBestScore(Integer best) {
         bestScore.setText(best.toString());
+        totalScore.setText(((Integer)App.getInstance().getNumOfStars()).toString());
     }
 }
 
