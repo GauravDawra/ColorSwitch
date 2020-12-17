@@ -143,6 +143,7 @@ public class Game extends Application implements Serializable {
         try {
             if (pausePageController.visibility()) {
                 pausePopup.show(App.getStage());
+                ball.setVelocityY(0);
             } else {
                 pausePopup.hide();
             }
