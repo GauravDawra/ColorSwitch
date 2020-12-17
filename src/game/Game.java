@@ -410,7 +410,7 @@ public class Game extends Application implements Serializable {
                     elements.getChildren().add(component.get(component.size()-1).getNode());
 //                    ((MediumRingObstacle)component.get(component.size()-1)).bindToBall(ball);
                 }
-//                System.out.println(obst_list.size() + palette_list.size());
+
             }
         };
         timer.start();

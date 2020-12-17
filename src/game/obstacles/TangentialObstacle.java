@@ -62,7 +62,7 @@ public class TangentialObstacle extends Obstacle {
 //                return true;
 //            }
             if (!((Shape)n).getFill().toString().equals(ball.getColor().getColor().toString()) && ((Path) Shape.intersect((Circle) ball.getNode(), (Shape)n)).getElements().size() > 0) {
-                System.out.println(((Shape)n).getFill() + " " + ball.getColor().getColor());
+//                System.out.println(((Shape)n).getFill() + " " + ball.getColor().getColor());
                 return true;
             }
         }
