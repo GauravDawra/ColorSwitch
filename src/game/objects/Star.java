@@ -58,10 +58,10 @@ public class Star extends GameObject implements Removable {
 
     public boolean done = false;
     public boolean check(Ball ball) {
-            if (((Path) Shape.intersect((Circle) ball.getNode(), star)).getElements().size() > 0) {
-                done = true;
-                return true;
-            }
-            return false;
+        if (((Path) Shape.intersect((Circle) ball.getNode(), star)).getElements().size() > 0) {
+            done = true;
+            return true;
+        }
+        return false;
     }
 }
