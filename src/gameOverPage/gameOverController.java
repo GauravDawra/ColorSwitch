@@ -1,17 +1,20 @@
 package gameOverPage;
 
+import application.App;
+import game.Game;
 import javafx.animation.Animation;
 import javafx.animation.Interpolator;
 import javafx.animation.ScaleTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Controller implements Initializable {
+public class gameOverController implements Initializable {
 
     @FXML
     public ImageView restartButton;
@@ -32,5 +35,18 @@ public class Controller implements Initializable {
         scalePlay.play();
     }
 
+    public void restartPressed(MouseEvent mouseEvent){
+        App.getInstance().createNewGame();
+        App.getInstance().loadGame();
+    }
+
+    public void backPressed(MouseEvent mouseEvent){
+        try {
+            App.getStage().setHeight(703);
+            App.getStage().setWidth(665);
+            App.getInstance().start(App.getStage());
+        } catch (Exception e) {}
+
+    }
 }
 

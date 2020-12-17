@@ -125,6 +125,11 @@ public class Game extends Application implements Serializable {
 
     public void exit() {
         setState(State.EXIT);
+        try {
+            loadGameOverPage();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private Popup createPopup(Node n) {
@@ -147,7 +152,15 @@ public class Game extends Application implements Serializable {
         revivePopup.setX(WIDTH);
     }
 
+    private void loadGameOverPage() throws IOException {
+        Scene gameOver = SceneLoader.getLoader().getGameOverPage();
+        App.getStage().setScene(gameOver);
+        App.getStage().show();
+    }
+
     private void handlePopupVisibility() {
+        if (state == State.EXIT) return;
+
         try {
             if (pausePageController.visibility()) {
                 pausePopup.show(App.getStage());
@@ -303,8 +316,10 @@ public class Game extends Application implements Serializable {
                     Obstacle o = obst_list.get(i);
                     if(o.check(ball)){
                         System.out.println("collide"+cnt++);
-                        if (score > 2) {
+                        if (!isReviveUsed && score > 2) {
                             continueGameController.show();
+                        } else if (cnt > 0){
+                            exit();
                         }
                     }
                     if(o.getPosition().getY() > -elements.getTranslateY() + HEIGHT) {

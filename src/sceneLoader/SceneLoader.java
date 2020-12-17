@@ -29,6 +29,9 @@ public class SceneLoader {
         Parent continueGameParent = FXMLLoader.load(getClass().getResource("/continueGame/layout.fxml"));
         continueGame = new Scene(continueGameParent);
 
+        Parent gameOverPageParent = FXMLLoader.load(getClass().getResource("/gameOverPage/layout.fxml"));
+        gameOverPage = new Scene(gameOverPageParent);
+
         Parent mainPageParent = FXMLLoader.load(getClass().getResource("/mainPage/layout.fxml"));
         mainPage = new Scene(mainPageParent);
 
@@ -49,6 +52,10 @@ public class SceneLoader {
 
     public Scene getContinueGame() {
         return continueGame;
+    }
+
+    public Scene getGameOverPage() {
+        return gameOverPage;
     }
 
     public Scene getMainPage() {

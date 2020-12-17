@@ -8,10 +8,10 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="663.0" prefWidth="413.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameOverPage.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameOverPage.gameOverController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" height="677.0" layoutX="-7.0" layoutY="-7.0" stroke="BLACK" strokeType="INSIDE" width="426.0" />
-      <Text fill="WHITE" layoutX="128.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="COLOR" wrappingWidth="207.8173828125">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="800.0" layoutY="-4.0" stroke="BLACK" strokeType="INSIDE" width="500.0" />
+      <Text fill="WHITE" layoutX="158.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="COLOR" wrappingWidth="207.8173828125">
          <font>
             <Font name="FreeSans" size="50.0" />
          </font>
@@ -19,7 +19,7 @@
             <Glow />
          </effect>
       </Text>
-      <Text fill="WHITE" layoutX="116.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SWITCH" wrappingWidth="234.7294921875">
+      <Text fill="WHITE" layoutX="146.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SWITCH" wrappingWidth="234.7294921875">
          <font>
             <Font name="FreeSans" size="50.0" />
          </font>
@@ -27,38 +27,38 @@
             <Glow />
          </effect>
       </Text>
-      <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#backPressed" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../sprites/buttton_back.png" />
          </image>
       </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#16232f" height="64.0" layoutX="-8.0" layoutY="151.0" stroke="TRANSPARENT" strokeType="INSIDE" width="426.0" />
-      <Text fill="WHITE" layoutX="131.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SCORE">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#16232f" height="64.0" layoutY="181.0" stroke="TRANSPARENT" strokeType="INSIDE" width="500.0" />
+      <Text fill="WHITE" layoutX="176.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SCORE">
          <font>
             <Font name="FreeSans" size="42.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="177.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" text="XX">
+      <Text fill="WHITE" layoutX="222.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0" text="XX">
          <font>
             <Font name="FreeSans" size="42.0" />
          </font>
       </Text>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f5a80e" height="64.0" layoutX="-7.0" layoutY="294.0" stroke="TRANSPARENT" strokeType="INSIDE" width="426.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f5a80e" height="64.0" layoutX="-4.0" layoutY="346.0" stroke="TRANSPARENT" strokeType="INSIDE" width="508.0">
          <effect>
             <Glow />
          </effect>
       </Rectangle>
-      <Text fill="WHITE" layoutX="71.0" layoutY="340.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BEST SCORE">
+      <Text fill="WHITE" layoutX="133.0" layoutY="392.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BEST SCORE">
          <font>
             <Font name="FreeSans" size="42.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="178.0" layoutY="411.0" strokeType="OUTSIDE" strokeWidth="0.0" text="XX">
+      <Text fill="WHITE" layoutX="222.0" layoutY="471.0" strokeType="OUTSIDE" strokeWidth="0.0" text="XX">
          <font>
             <Font name="FreeSans" size="42.0" />
          </font>
       </Text>
-      <ImageView fx:id="restartButton" fitHeight="123.0" fitWidth="117.0" layoutX="146.0" layoutY="463.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="restartButton" fitHeight="123.0" fitWidth="117.0" layoutX="191.0" layoutY="521.0" onMouseClicked="#restartPressed" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../sprites/button_restart.png" />
          </image>
