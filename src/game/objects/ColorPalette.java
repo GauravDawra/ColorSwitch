@@ -24,7 +24,7 @@ public class ColorPalette extends GameObject implements Removable {
     public static final double RADIUS = (Double) bundle.getObject("ColorPallete_radius");
 
     private static Random random;
-    private AnchorPane pallete;
+    transient private AnchorPane pallete;
     public ColorPalette(double centerX, double centerY) {
         super(centerX, centerY, true);
         if(random == null) random = new Random();

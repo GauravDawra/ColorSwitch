@@ -19,7 +19,7 @@ public class WindmillObstacle extends Obstacle {
 //    private static FXMLLoader loader;
     private static double RADIUS = (Double)bundle.getObject("Windmill_radius");
 
-    private AnchorPane windmill;
+    transient private AnchorPane windmill;
 
     public WindmillObstacle(double centerX, double centerY) {
         super(centerX, centerY, 0, 4);

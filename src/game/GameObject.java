@@ -2,7 +2,9 @@ package game;
 import javafx.scene.Node;
 import util.Vector;
 
-public abstract class GameObject {
+import java.io.Serializable;
+
+public abstract class GameObject implements Serializable {
     private Vector position;
     private boolean visibility;
 

@@ -9,6 +9,7 @@ import util.Movable;
 import util.Removable;
 import util.Vector;
 
+import java.io.Serializable;
 import java.util.ResourceBundle;
 
 public class Ball extends GameObject implements Movable, Removable {
@@ -19,7 +20,7 @@ public class Ball extends GameObject implements Movable, Removable {
 
     private Color color;
     private Vector velocity;
-    private Circle circle;
+    transient private Circle circle;
 
     public Ball(double centerX, double centerY) {
         super(centerX, centerY, true);

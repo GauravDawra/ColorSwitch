@@ -26,7 +26,7 @@ public class MediumRingObstacle extends Obstacle {
     public static ResourceBundle bundle = ResourceBundle.getBundle("resources.DimensionBundle");
     public static double RADIUS = (Double) bundle.getObject("MediumRingObstacle_radius");
 
-    private AnchorPane ring;
+    transient private AnchorPane ring;
 
     public MediumRingObstacle(double centerX, double centerY) {
         super(centerX, centerY, 0, 4);

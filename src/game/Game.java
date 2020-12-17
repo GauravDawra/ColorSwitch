@@ -68,8 +68,8 @@ public class Game extends Application implements Serializable {
 
     private Date date;
 
-    private Popup pausePopup;
-    private Popup revivePopup;
+    transient private Popup pausePopup;
+    transient private Popup revivePopup;
     private boolean isReviveUsed;
 
     public Game() {

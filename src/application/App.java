@@ -7,6 +7,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import sceneLoader.SceneLoader;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -14,6 +17,7 @@ import java.util.ResourceBundle;
 public class App extends Application implements Serializable {
     private static App colorSwitch = null;
     private static Stage stage = null;
+    private static final int serialVersionUID = 1;
 
     private static ResourceBundle bundle = ResourceBundle.getBundle("resources.DimensionBundle");
 
@@ -24,7 +28,7 @@ public class App extends Application implements Serializable {
     private int bestScore;
     private ArrayList<Game> pastGames;
     private ArrayList<Obstacle> OBSTACLE_LIST;
-    private Game currentGame;
+    transient private Game currentGame;
 
     public App() {
         pastGames = new ArrayList<Game>();
@@ -116,6 +120,28 @@ public class App extends Application implements Serializable {
     }
 
     public void retrieveState() {
+
+    }
+
+    public void serialise() throws IOException {
+        String filename = "app.txt";
+        ObjectOutputStream out = null;
+        try {
+            out = new ObjectOutputStream(new FileOutputStream(filename));
+            out.writeObject(this);
+        } finally {
+            out.close();
+        }
+    }
+
+    public static void main(String[] args) {
+        App colorSwitch = getInstance();
+        colorSwitch.startApp(args);
+        try {
+            colorSwitch.serialise();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 }

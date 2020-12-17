@@ -17,7 +17,7 @@ public class Star extends GameObject implements Removable {
     private static ResourceBundle bundle = ResourceBundle.getBundle("resources.DimensionBundle");
     public static final int VALUE = (Integer) bundle.getObject("Star_value");
 
-    private Ellipse star;
+    transient private Ellipse star;
 
     public Star(double centerX, double centerY) {
         super(centerX, centerY, true);
