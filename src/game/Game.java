@@ -137,6 +137,8 @@ public class Game extends Application implements Serializable {
     public void exit() {
         setState(State.EXIT);
         App.getInstance().setBestScore(Math.max(App.getInstance().getBestScore(), getScore()));
+        App.getInstance().addNumOfStars(getScore());
+
         try {
             SceneLoader.getLoader().setScore(getScore());
             loadGameOverPage();

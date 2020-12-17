@@ -78,8 +78,8 @@ public class App extends Application implements Serializable {
         return currentGame;
     }
 
-    public void setNumOfStars(int numOfStars) {
-        this.numOfStars = numOfStars;
+    public void addNumOfStars(int numOfStars) {
+        this.numOfStars += numOfStars;
     }
 
     public void setBestScore(int bestScore) {
