@@ -45,6 +45,7 @@ import java.util.ResourceBundle;
 import game.objects.ColorPalette;
 
 public class Game extends Application implements Serializable {
+
     public enum State {
         PLAYING,
         PAUSED,
@@ -170,7 +171,7 @@ public class Game extends Application implements Serializable {
     }
 
     private void handlePopupVisibility() {
-//        if (state == State.EXIT) return;
+        if (state == State.EXIT) return;
 
         try {
             if (pausePageController.visibility()) {
@@ -202,7 +203,10 @@ public class Game extends Application implements Serializable {
 //            component.add(obj);
         if(obj instanceof Obstacle) obst_list.add((Obstacle)obj);
         else if(obj instanceof Star) star_list.add((Star)obj);
-        else palette_list.add((ColorPalette)obj);
+        else {
+            palette_list.add((ColorPalette) obj);
+            lastPalette = obj.getPosition().getY();
+        }
 
         component.add(obj);
 
@@ -272,6 +276,11 @@ public class Game extends Application implements Serializable {
 //    private void destroy(Scene sc) {
 //        sc = null;
 //    }
+
+    private double lastPalette;
+    public void saveBall() {
+        ball.setPosition(ball.getPosition().getX(), lastPalette);
+    }
 
     public Group getRoot(AnchorPane background, AnchorPane elements) {
         Group root = new Group();
