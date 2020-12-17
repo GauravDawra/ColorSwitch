@@ -16,28 +16,29 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Path;
 import javafx.scene.shape.Shape;
 import resources.views.ringObstacle.RingController;
+import resources.views.ringObstacle.TangentialController;
 
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.concurrent.Callable;
 
-public class MediumRingObstacle extends Obstacle {
+public class TangentialObstacle extends Obstacle {
 
     public static ResourceBundle bundle = ResourceBundle.getBundle("resources.DimensionBundle");
     public static double RADIUS = (Double) bundle.getObject("MediumRingObstacle_radius");
 
     transient private AnchorPane ring;
 
-    public MediumRingObstacle(double centerX, double centerY) {
+    public TangentialObstacle(double centerX, double centerY) {
         super(centerX, centerY, 0, 4);
         try {
 //            ring = FXMLLoader.load(getClass().getResource("/resources/views/ringObstacle/mediumRingObstacle2.fxml"));
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/views/ringObstacle/mediumRingObstacle2.fxml"));
-            RingController controller = new RingController(1500 + new Random().nextInt(3000));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/views/tangentialObstacle/tangentialObstacle.fxml"));
+            TangentialController controller = new TangentialController(5000 + new Random().nextInt(2000));
             loader.setController(controller);
             ring = loader.load();
             ring.setLayoutY(centerY - RADIUS - 7.5);
-            ring.setLayoutX(centerX - RADIUS - 7.5);
+            ring.setLayoutX(centerX - 2*RADIUS - 15);
         } catch(Exception e) {}
     }
 
@@ -45,46 +46,23 @@ public class MediumRingObstacle extends Obstacle {
     public Node getNode() {
         return ring;
     }
-    private BooleanBinding boo;
-
-    public void bindToBall(Ball ball) {
-        boo = Bindings.createBooleanBinding(new Callable<Boolean>() {
-            @Override
-            public Boolean call() throws Exception {
-//                System.out.println("Rotating");
-                for(Node n : ring.getChildren()) {
-                    if(((Path) Shape.intersect((Circle) ball.getNode(), (Shape)n)).getElements().size() > 0) {
-//                        System.out.println("YOYOYOYO" + ((Shape) n).getFill());
-
-                        return true;
-                    }
-                }
-                return false;
-//                return check(ball);
-            }
-        }, ((Circle)ball.getNode()).centerYProperty());
-        boo.addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-//                if(newValue) System.out.println("takkar");
-            }
-        });
-    }
 
     @Override
     public boolean check(Ball ball) {
         Shape intersect;
-        for(Node n : ring.getChildren()) {
+        for(Node n : ((AnchorPane)ring.getChildren().get(0)).getChildren()) {
 //            intersect = Shape.intersect((Circle)ball.getNode(), (Shape)n);
 //            if(intersect.getBoundsInLocal().getWidth() != -1) {
 //                System.out.println(((Shape)n).getFill() + " " + ball.getColor().getColor());
 //                return true;
 //            }
             if (!((Shape)n).getFill().toString().equals(ball.getColor().getColor().toString()) && ((Path) Shape.intersect((Circle) ball.getNode(), (Shape)n)).getElements().size() > 0) {
-//                System.out.println(((Shape)n).getFill() + " " + ball.getColor().getColor());
+                System.out.println(((Shape)n).getFill() + " " + ball.getColor().getColor());
                 return true;
             }
         }
+//        return check(ring.getChildren().get(1))
+//        System.out.println(ring.getChildren().get(1).getClass());
         return false;
     }
 }

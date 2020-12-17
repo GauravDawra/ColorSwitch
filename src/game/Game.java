@@ -118,6 +118,8 @@ public class Game extends Application implements Serializable {
 
     public void pause() {
         setState(State.PAUSED);
+        timer.stop();
+        ballTime.stop();
         try {
             SceneLoader.getLoader().setScore(getScore());
         } catch(Exception e){}
@@ -126,6 +128,7 @@ public class Game extends Application implements Serializable {
 
     public void exit() {
         setState(State.EXIT);
+        App.getInstance().setBestScore(Math.max(App.getInstance().getBestScore(), getScore()));
         try {
             SceneLoader.getLoader().setScore(getScore());
             loadGameOverPage();
@@ -293,6 +296,7 @@ public class Game extends Application implements Serializable {
         addInitialComponents();
         elements.getChildren().add(ball.getNode());
         for(GameObject o : component){
+            if(o.getNode()!=null)
             elements.getChildren().add(o.getNode());
 //            ((MediumRingObstacle)o).bindToBall(ball);
         }

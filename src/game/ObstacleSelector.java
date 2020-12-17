@@ -1,6 +1,7 @@
 package game;
 
 import game.obstacles.MediumRingObstacle;
+import game.obstacles.TangentialObstacle;
 import game.obstacles.WindmillObstacle;
 
 import java.util.Random;
@@ -18,6 +19,8 @@ public class ObstacleSelector {
                 return new MediumRingObstacle(centerX, centerY);
             case 1:
                 return new WindmillObstacle(centerX, centerY);
+            case 2:
+                return new TangentialObstacle(centerX, centerY);
         }
         return new MediumRingObstacle(centerX, centerY);
     }

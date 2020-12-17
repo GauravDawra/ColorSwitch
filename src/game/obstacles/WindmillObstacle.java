@@ -26,7 +26,7 @@ public class WindmillObstacle extends Obstacle {
 //        if(loader == null)
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/views/windmillObstacle/windmillObstacle.fxml"));
         try {
-            WindmillController controller = new WindmillController(2500 + new Random().nextInt(1000));
+            WindmillController controller = new WindmillController(2500 + new Random().nextInt(2000));
             loader.setController(controller);
             windmill = loader.load();
             windmill.setLayoutX(centerX - RADIUS - 100); // offset for windmill
