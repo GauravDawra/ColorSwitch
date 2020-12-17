@@ -126,6 +126,7 @@ public class Game extends Application implements Serializable {
     public void exit() {
         setState(State.EXIT);
         try {
+            SceneLoader.getLoader().setScore(getScore());
             loadGameOverPage();
         } catch (IOException e) {
             e.printStackTrace();

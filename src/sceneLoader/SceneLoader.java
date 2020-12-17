@@ -1,6 +1,7 @@
 package sceneLoader;
 
 import application.App;
+import gameOverPage.gameOverController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -21,6 +22,7 @@ public class SceneLoader {
 //    private FXMLLoader continueLoader, gameOverLoader, gamePageLoader, mainPageLoader, pausePageLoader, savedGamesLoader;
 
     private pausePageController pauseController;
+    private gameOverController overController;
 
     private SceneLoader() throws IOException {
         FXMLLoader loader = new FXMLLoader();
@@ -29,8 +31,10 @@ public class SceneLoader {
         Parent continueGameParent = FXMLLoader.load(getClass().getResource("/continueGame/layout.fxml"));
         continueGame = new Scene(continueGameParent);
 
-        Parent gameOverPageParent = FXMLLoader.load(getClass().getResource("/gameOverPage/layout.fxml"));
+        FXMLLoader loaderOver = new FXMLLoader(getClass().getResource("/gameOverPage/layout.fxml"));
+        Parent gameOverPageParent = loaderOver.load();
         gameOverPage = new Scene(gameOverPageParent);
+        overController = loaderOver.getController();
 
         Parent mainPageParent = FXMLLoader.load(getClass().getResource("/mainPage/layout.fxml"));
         mainPage = new Scene(mainPageParent);
@@ -69,5 +73,6 @@ public class SceneLoader {
     }
     public void setScore(int score) {
         pauseController.setScore(score);
+        overController.setScore(score);
     }
 }

@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 import java.net.URL;
@@ -18,6 +19,12 @@ public class gameOverController implements Initializable {
 
     @FXML
     public ImageView restartButton;
+
+    @FXML
+    private Text scoreTxt;
+
+    @FXML
+    private Text bestScore;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -47,6 +54,14 @@ public class gameOverController implements Initializable {
             App.getInstance().start(App.getStage());
         } catch (Exception e) {}
 
+    }
+
+    public void setScore(Integer score) {
+        scoreTxt.setText(score.toString());
+    }
+
+    public void setBestScore(Integer best) {
+        bestScore.setText(bestScore.toString());
     }
 }
 

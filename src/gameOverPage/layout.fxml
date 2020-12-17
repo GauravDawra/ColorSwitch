@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.effect.Glow?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameOverPage.gameOverController">
    <children>
@@ -38,7 +36,7 @@
             <Font name="FreeSans" size="42.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="222.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0" text="XX">
+      <Text fx:id="scoreTxt" fill="WHITE" layoutX="222.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0" text="XX">
          <font>
             <Font name="FreeSans" size="42.0" />
          </font>
@@ -53,7 +51,7 @@
             <Font name="FreeSans" size="42.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="222.0" layoutY="471.0" strokeType="OUTSIDE" strokeWidth="0.0" text="XX">
+      <Text fx:id="bestScore" fill="WHITE" layoutX="222.0" layoutY="471.0" strokeType="OUTSIDE" strokeWidth="0.0" text="XX">
          <font>
             <Font name="FreeSans" size="42.0" />
          </font>

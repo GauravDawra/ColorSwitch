@@ -129,7 +129,7 @@ public class App extends Application implements Serializable {
     }
 
     public void serialise() throws IOException {
-        String filename = "app.txt";
+        String filename = ".cswitch";
         ObjectOutputStream out = null;
         try {
             out = new ObjectOutputStream(new FileOutputStream(filename));
