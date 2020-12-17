@@ -10,6 +10,7 @@ import java.io.IOException;
 public class SceneLoader {
     private static SceneLoader loader = null;
 
+    private Scene continueGame;
     private Scene gameOverPage;
     private Scene gamePage;
     private Scene mainPage;
@@ -17,6 +18,9 @@ public class SceneLoader {
     private Scene savedGamesPage;
 
     private SceneLoader() throws IOException {
+        Parent continueGameParent = FXMLLoader.load(getClass().getResource("/continueGame/layout.fxml"));
+        continueGame = new Scene(continueGameParent);
+
         Parent mainPageParent = FXMLLoader.load(getClass().getResource("/mainPage/layout.fxml"));
         mainPage = new Scene(mainPageParent);
 
@@ -29,6 +33,10 @@ public class SceneLoader {
             loader = new SceneLoader();
         }
         return loader;
+    }
+
+    public Scene getContinueGame() {
+        return continueGame;
     }
 
     public Scene getMainPage() {

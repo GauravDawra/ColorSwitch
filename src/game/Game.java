@@ -1,6 +1,7 @@
 package game;
 
 import application.App;
+import continueGame.continueGameController;
 import game.objects.Ball;
 import game.objects.ColorPalette;
 import game.objects.Star;
@@ -67,6 +68,7 @@ public class Game extends Application implements Serializable {
     private Date date;
 
     private Popup pausePopup;
+    private Popup revivePopup;
 
     public Game() {
         this.score = 0;
@@ -77,6 +79,10 @@ public class Game extends Application implements Serializable {
         this.star_list = new ArrayList<>();
         this.palette_list = new ArrayList<>();
         this.ball = new Ball(WIDTH / 2, 700);
+        try {
+            setPausePage();
+            setRevivePopup();
+        } catch (Exception e) {}
     }
 
     public Integer getScore() {
@@ -109,22 +115,44 @@ public class Game extends Application implements Serializable {
     public void pause() {
         setState(State.PAUSED);
         pausePageController.show();
-        try {
-            setPausePage();
-        } catch (Exception e){}
-    }
-
-    private void setPausePage() throws IOException {
-        Scene pausePage = SceneLoader.getLoader().getPausePage();
-        Popup popup = new Popup();
-        popup.getContent().add(pausePage.getRoot());
-        popup.setX(WIDTH/2);
-        popup.setY(HEIGHT/2);
-        pausePopup = popup;
     }
 
     public void exit() {
         setState(State.EXIT);
+    }
+
+    private Popup createPopup(Node n) {
+        Popup popup = new Popup();
+        popup.getContent().add(n);
+        popup.setX(App.getStage().getX() + WIDTH / 8);
+        popup.setY(App.getStage().getY() + HEIGHT / 4);
+        return popup;
+    }
+
+    private void setPausePage() throws IOException {
+        Scene pausePage = SceneLoader.getLoader().getPausePage();
+        pausePopup = createPopup(pausePage.getRoot());
+    }
+
+    private void setRevivePopup() throws  IOException {
+        Scene continueGame = SceneLoader.getLoader().getContinueGame();
+        revivePopup = createPopup(continueGame.getRoot());
+    }
+
+    private void handlePopupVisibility() {
+        try {
+            if (pausePageController.visibility()) {
+                pausePopup.show(App.getStage());
+            } else {
+                pausePopup.hide();
+            }
+
+            if (continueGameController.visibility()) {
+                revivePopup.show(App.getStage());
+            } else {
+                revivePopup.hide();
+            }
+        } catch (Exception e) {}
     }
 
     public GameObject getComponent(int ind) {
@@ -255,26 +283,20 @@ public class Game extends Application implements Serializable {
                     }
                 });
 
-                try {
-                    System.out.println(pausePageController.visibility());
-                    if (pausePageController.visibility()) {
-                        pausePopup.show(App.getStage());
-                    } else {
-                        pausePopup.hide();
-                    }
-                } catch (Exception e) {
-                }
-
                 if(Min > ball.getPosition().getY()) {
                     Min = ball.getPosition().getY();
                     elements.setTranslateY(-Min + HEIGHT / 2.0);
                 }
 
+                handlePopupVisibility();
 
                 for(int i=0;i<obst_list.size();i++){
                     Obstacle o = obst_list.get(i);
                     if(((MediumRingObstacle)o).check(ball)){
                         System.out.println("collide"+cnt++);
+                        if (score > 2) {
+                            continueGameController.show();
+                        }
                     }
                     if(o.getPosition().getY() > -elements.getTranslateY() + HEIGHT) {
                         elements.getChildren().remove(o.getNode());

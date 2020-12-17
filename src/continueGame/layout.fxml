@@ -8,8 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="268.0" prefWidth="293.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="268.0" prefWidth="293.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="continueGame.continueGameController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffb81f" height="268.0" stroke="#ffd500" strokeType="INSIDE" strokeWidth="7.0" width="293.0" />
       <Text fill="WHITE" layoutX="49.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Continue?">
@@ -17,17 +16,11 @@
             <Font name="FreeSans" size="44.0" />
          </font>
       </Text>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ed9b05" height="88.0" layoutX="76.0" layoutY="91.0" stroke="TRANSPARENT" strokeType="INSIDE" width="141.0" />
-      <ImageView fitHeight="55.0" fitWidth="54.0" layoutX="84.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="90.0" fitWidth="68.0" layoutX="112.0" layoutY="96.0" onMouseClicked="#playPressed" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../ColorSwitch/src/sprites/star.png" />
+            <Image url="@../sprites/button_play.png" />
          </image>
       </ImageView>
-      <Text fill="WHITE" layoutX="147.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
-         <font>
-            <Font name="FreeSans" size="35.0" />
-         </font>
-      </Text>
       <Circle fill="#ed9b05" layoutX="147.0" layoutY="229.0" radius="39.0" stroke="#ffd500" strokeType="INSIDE" strokeWidth="7.0" />
       <Text fill="WHITE" layoutX="135.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4">
          <font>
