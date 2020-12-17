@@ -116,6 +116,7 @@ public class App extends Application implements Serializable {
         currentGame = g;
         try {
             g.setScene();
+            g.startSavedGame();
             g.play();
             stage.show();
         } catch (Exception e) {

@@ -307,7 +307,107 @@ public class Game extends Application implements Serializable {
         pauseBtn = getPauseBtn();
 
         background.getChildren().addAll(pauseBtn, scoreLbl);
+
     }
+
+    public void startSavedGame() {
+        elements.getChildren().add(ball.getNode());
+        for(GameObject o : component){
+            if(o.getNode()!=null)
+                elements.getChildren().add(o.getNode());
+        }
+        sc.setOnKeyPressed(event -> ball.jump());
+        pauseBtn.setOnMouseClicked(mouseEvent -> pause());
+        ballTime = moveBall();
+
+        timer = new AnimationTimer() {
+            double Min = HEIGHT/2;
+            int cnt = 0;
+
+            @Override
+            public void handle(long now) {
+                if(getState() == State.EXIT) {
+                    ballTime.stop();
+//                    destroy(sc);
+                    this.stop();
+                }
+
+                if(Min > ball.getPosition().getY()) {
+                    Min = ball.getPosition().getY();
+                    elements.setTranslateY(-Min + HEIGHT / 2.0);
+                }
+
+                handlePopupVisibility();
+
+                for(int i=0;i<obst_list.size();i++){
+                    Obstacle o = obst_list.get(i);
+                    if(o.check(ball)){
+                        System.out.println("collide"+cnt++);
+                        if (!isReviveUsed && score > 2) {
+                            continueGameController.show();
+                        } else if (!continueGameController.visibility()){
+                            ball.setVelocityY(0);
+                            exit();
+                        }
+                    }
+                    if(o.getPosition().getY() > -elements.getTranslateY() + HEIGHT) {
+                        elements.getChildren().remove(o.getNode());
+                        obst_list.remove(i);
+                        i--;
+                    }
+                }
+
+                for(int i=0;i<star_list.size();i++){
+                    Star o = star_list.get(i);
+                    if(!o.done && o.check(ball)){
+                        o.remove();
+                        elements.getChildren().remove(o.getNode());
+                        increaseScore();
+                        scoreLbl.setText(getScore().toString());
+//                        System.out.println("SCORE: " + score);
+
+                    }
+                    if(o.getPosition().getY() > -elements.getTranslateY() + HEIGHT) {
+                        elements.getChildren().remove(o.getNode());
+                        star_list.remove(i);
+                        i--;
+                    }
+                }
+
+                for(int i=0;i<palette_list.size();i++){
+                    ColorPalette o = palette_list.get(i);
+                    if(!o.done && o.check(ball)){
+//                        System.out.println("color change"+cnt++);
+                        ball.setColor(ColorPalette.getRandomColor(ball.getColor()));
+                        o.remove();
+                        elements.getChildren().remove(o.getNode());
+                    }
+                    if(o.getPosition().getY() > -elements.getTranslateY() + HEIGHT) {
+                        elements.getChildren().remove(o.getNode());
+                        palette_list.remove(i);
+                        i--;
+                    }
+                }
+
+                if(obst_list.get(obst_list.size()-1).getPosition().getY() - OBSTACLE_SPACING + 100 > Min - HEIGHT/2) {
+//                    component.add(new MediumRingObstacle(WIDTH/2, component.get(component.size()-1).getPosition().getY()-OBSTACLE_SPACING));
+                    double x = WIDTH / 2;
+                    double y = obst_list.get(obst_list.size()-1).getPosition().getY()-OBSTACLE_SPACING;
+//                    addComponent(new MediumRingObstacle(x, y));
+                    addComponent(ObstacleSelector.getRandomObstacle(x,y));
+                    elements.getChildren().add(component.get(component.size()-1).getNode());
+                    addComponent(new ColorPalette(x, y-OBSTACLE_SPACING/2));
+                    elements.getChildren().add(component.get(component.size()-1).getNode());
+                    addComponent(new Star(WIDTH/2, y));
+                    elements.getChildren().add(component.get(component.size()-1).getNode());
+//                    ((MediumRingObstacle)component.get(component.size()-1)).bindToBall(ball);
+                }
+//                System.out.println(obst_list.size() + palette_list.size());
+            }
+        };
+        timer.start();
+    }
+
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -316,7 +416,7 @@ public class Game extends Application implements Serializable {
         setScene();
 
         addInitialComponents();
-        elements.getChildren().add(ball.getNode());
+        elements.getChildren().add((Node) ball.getNode());
         for(GameObject o : component){
             if(o.getNode()!=null)
                 elements.getChildren().add(o.getNode());
