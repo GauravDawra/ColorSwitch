@@ -169,7 +169,6 @@ public class Game extends Application implements Serializable {
             }
 
             if (continueGameController.visibility()) {
-                pause();
                 revivePopup.show(App.getStage());
                 ball.setVelocityY(0);
                 isReviveUsed = true;
