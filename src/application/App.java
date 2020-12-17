@@ -7,17 +7,14 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import sceneLoader.SceneLoader;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class App extends Application implements Serializable {
     private static App colorSwitch = null;
     private static Stage stage = null;
-    private static final int serialVersionUID = 1;
+//    private static final long serialVersionUID = 1L;
 
     private static ResourceBundle bundle = ResourceBundle.getBundle("resources.DimensionBundle");
 
@@ -139,8 +136,30 @@ public class App extends Application implements Serializable {
         }
     }
 
+    public void deserialize() throws IOException{
+        String filename = "app.txt";
+        ObjectInputStream in = null;
+        try {
+            in = new ObjectInputStream(new FileInputStream(filename));
+            colorSwitch = (App) in.readObject();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            in.close();
+        }
+    }
+
     public static void main(String[] args) {
-        App colorSwitch = getInstance();
+        colorSwitch = getInstance();
+        try {
+            colorSwitch.deserialize();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+            System.out.println("nope");
+        }
+
         colorSwitch.startApp(args);
         try {
             colorSwitch.serialise();
