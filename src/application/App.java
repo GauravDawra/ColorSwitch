@@ -94,6 +94,7 @@ public class App extends Application implements Serializable {
         //no game exception
         try {
             currentGame.start(stage);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -126,7 +127,7 @@ public class App extends Application implements Serializable {
     }
 
     public void serialise() throws IOException {
-        String filename = ".cswitch";
+        String filename = (String)bundle.getObject("Save_file");
         ObjectOutputStream out = null;
         try {
             out = new ObjectOutputStream(new FileOutputStream(filename));

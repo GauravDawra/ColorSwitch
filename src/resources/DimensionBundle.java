@@ -11,6 +11,7 @@ public class DimensionBundle extends ListResourceBundle {
     static final Object[][] contents = {
             {"SCREEN_HEIGHT", new Integer(800)},
             {"SCREEN_WIDTH", new Integer(500)},
+            {"Save_file", new String(".cswitch")},
             {"Ball_radius", new Double(10.0)},
             {"Jump_velocity", new Double(40.0)},
             {"Star_value", new Integer(1)},

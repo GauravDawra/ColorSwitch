@@ -6,13 +6,17 @@ import javafx.animation.Animation;
 import javafx.animation.Interpolator;
 import javafx.animation.RotateTransition;
 import javafx.animation.ScaleTransition;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
+import savedGamesPage.SavedGamesPage;
+import sceneLoader.SceneLoader;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -78,4 +82,13 @@ public class Controller implements Initializable {
         App.getInstance().loadGame();
     }
 
+
+    public void loadPressed(ActionEvent actionEvent) {
+//        System.out.println("LOADDDD");
+        try {
+            Scene savedGames = SavedGamesPage.getInstance().getScene();
+            App.getStage().setScene(savedGames);
+            App.getStage().show();
+        } catch(Exception e) {}
+    }
 }

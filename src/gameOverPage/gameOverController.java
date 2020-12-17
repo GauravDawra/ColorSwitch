@@ -61,7 +61,7 @@ public class gameOverController implements Initializable {
     }
 
     public void setBestScore(Integer best) {
-        bestScore.setText(bestScore.toString());
+        bestScore.setText(best.toString());
     }
 }
 
