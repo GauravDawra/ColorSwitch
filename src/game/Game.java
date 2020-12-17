@@ -109,10 +109,8 @@ public class Game extends Application implements Serializable {
         this.state = s;
     }
 
-    public void play(String []args) {
+    public void play() {
         setState(State.PLAYING);
-        // ...
-//        launch();
     }
 
     public void pause() {
@@ -171,6 +169,7 @@ public class Game extends Application implements Serializable {
             }
 
             if (continueGameController.visibility()) {
+                pause();
                 revivePopup.show(App.getStage());
                 ball.setVelocityY(0);
                 isReviveUsed = true;
@@ -261,7 +260,7 @@ public class Game extends Application implements Serializable {
     @Override
     public void start(Stage primaryStage) throws Exception {
         /* All this code is just for testing right now*/
-
+        play();
         setStageValues(primaryStage);
 
         Group root = new Group();
@@ -299,12 +298,11 @@ public class Game extends Application implements Serializable {
         new AnimationTimer() {
             double Min = HEIGHT/2;
             int cnt = 0;
+
             @Override
             public void handle(long now) {
 
-//                ball.setPosition(ball.getPosition().getX(), ball.getPosition().getY() + ball.getVelocity().getY() / 5.0);
-//
-//                ball.setVelocityY(ball.getVelocity().getY() + 9.8 / 5.0);
+                play();
 
                 if(Min > ball.getPosition().getY()) {
                     Min = ball.getPosition().getY();
@@ -320,6 +318,7 @@ public class Game extends Application implements Serializable {
                         if (!isReviveUsed && score > 2) {
                             continueGameController.show();
                         } else if (!continueGameController.visibility()){
+                            ball.setVelocityY(0);
                             exit();
                         }
                     }

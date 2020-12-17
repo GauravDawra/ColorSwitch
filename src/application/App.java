@@ -137,7 +137,7 @@ public class App extends Application implements Serializable {
     }
 
     public void deserialize() throws IOException{
-        String filename = "app.txt";
+        String filename = ".cswitch";
         ObjectInputStream in = null;
         try {
             in = new ObjectInputStream(new FileInputStream(filename));
