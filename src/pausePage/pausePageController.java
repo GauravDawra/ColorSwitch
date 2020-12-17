@@ -2,7 +2,9 @@ package pausePage;
 
 import application.App;
 import game.Game;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
@@ -10,6 +12,9 @@ import java.util.ResourceBundle;
 
 public class pausePageController implements Initializable {
     private static boolean isVisible = false;
+
+    @FXML
+    private Label score;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -25,6 +30,7 @@ public class pausePageController implements Initializable {
     }
 
     public static void show() {
+//        score.setText(score.toString());
         isVisible = true;
     }
 
@@ -52,5 +58,9 @@ public class pausePageController implements Initializable {
     public void saveBtnPressed(MouseEvent mouseEvent){
         App.getInstance().saveCurrentGame();
         backPressed(mouseEvent);
+    }
+    public void setScore(Integer score) {
+        System.out.println("HELLOOOOOOOOOO");
+        this.score.setText(score.toString());
     }
 }

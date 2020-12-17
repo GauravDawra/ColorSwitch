@@ -4,6 +4,7 @@ import application.App;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import pausePage.pausePageController;
 
 import java.io.IOException;
 
@@ -17,15 +18,26 @@ public class SceneLoader {
     private Scene pausePage;
     private Scene savedGamesPage;
 
+//    private FXMLLoader continueLoader, gameOverLoader, gamePageLoader, mainPageLoader, pausePageLoader, savedGamesLoader;
+
+    private pausePageController pauseController;
+
     private SceneLoader() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+
+
         Parent continueGameParent = FXMLLoader.load(getClass().getResource("/continueGame/layout.fxml"));
         continueGame = new Scene(continueGameParent);
 
         Parent mainPageParent = FXMLLoader.load(getClass().getResource("/mainPage/layout.fxml"));
         mainPage = new Scene(mainPageParent);
 
-        Parent pausePageParent = FXMLLoader.load(getClass().getResource("/pausePage/layout.fxml"));
+
+        FXMLLoader loaderPause = new FXMLLoader(getClass().getResource("/pausePage/layout.fxml"));
+        Parent pausePageParent = loaderPause.load();
         pausePage = new Scene(pausePageParent);
+        pauseController = loaderPause.getController();
+//        System.out.println("XXXX"+( instanceof pausePageController)+"XXXX");
     }
 
     public static SceneLoader getLoader() throws IOException{
@@ -43,7 +55,12 @@ public class SceneLoader {
         return mainPage;
     }
 
-    public Scene getPausePage() {
+    public Scene getPausePage(int score) {
+//        System.out.println("YOOOOOOOOOOO");
+        pauseController.setScore(score);
         return pausePage;
+    }
+    public void setScore(int score) {
+        pauseController.setScore(score);
     }
 }

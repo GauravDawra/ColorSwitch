@@ -117,6 +117,9 @@ public class Game extends Application implements Serializable {
 
     public void pause() {
         setState(State.PAUSED);
+        try {
+            SceneLoader.getLoader().setScore(getScore());
+        } catch(Exception e){}
         pausePageController.show();
     }
 
@@ -133,11 +136,12 @@ public class Game extends Application implements Serializable {
     }
 
     private void setPausePage() throws IOException {
-        Scene pausePage = SceneLoader.getLoader().getPausePage();
+//        System.out.println(getScore());
+        Scene pausePage = SceneLoader.getLoader().getPausePage(getScore());
         pausePopup = createPopup(pausePage.getRoot());
     }
 
-    private void setRevivePopup() throws  IOException {
+    private void setRevivePopup() throws IOException {
         Scene continueGame = SceneLoader.getLoader().getContinueGame();
         revivePopup = createPopup(continueGame.getRoot());
         revivePopup.setX(WIDTH);
