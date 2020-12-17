@@ -74,10 +74,8 @@ public class Controller implements Initializable {
 
     public void playPressed(MouseEvent mouseEvent) throws Exception{
         System.out.println("play pressed");
-        Game g = new Game();
-        App.getInstance().setCurrentGame(g);
-        g.start(App.getStage());
-//        g.play(App.getInstance().getArgs());
+        App.getInstance().createNewGame();
+        App.getInstance().loadGame();
     }
 
 }
