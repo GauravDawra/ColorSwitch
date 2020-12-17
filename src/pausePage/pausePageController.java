@@ -27,6 +27,7 @@ public class pausePageController implements Initializable {
 
     public static void hide() {
         isVisible = false;
+        App.getInstance().getCurrentGame().handlePopupVisibility();
     }
 
     public static void show() {

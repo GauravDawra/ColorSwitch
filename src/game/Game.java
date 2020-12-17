@@ -171,7 +171,7 @@ public class Game extends Application implements Serializable {
         App.getStage().show();
     }
 
-    private void handlePopupVisibility() {
+    public void handlePopupVisibility() {
         if (state == State.EXIT) return;
 
         try {
