@@ -60,7 +60,7 @@ public class pausePageController implements Initializable {
         backPressed(mouseEvent);
     }
     public void setScore(Integer score) {
-        System.out.println("HELLOOOOOOOOOO");
+//        System.out.println("HELLOOOOOOOOOO");
         this.score.setText(score.toString());
     }
 }

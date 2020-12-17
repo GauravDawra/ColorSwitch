@@ -231,7 +231,7 @@ public class Game extends Application implements Serializable {
     private void addInitialComponents() {
         for(int i=0;i<3;i++){
             double x = WIDTH / 2;
-            double y = 500 - i * OBSTACLE_SPACING;
+            double y = 400 - i * OBSTACLE_SPACING;
 //            addComponent(new MediumRingObstacle(x, y));
             addComponent(ObstacleSelector.getRandomObstacle(x,y));
             addComponent(new Star(x, y));
@@ -318,7 +318,7 @@ public class Game extends Application implements Serializable {
                         System.out.println("collide"+cnt++);
                         if (!isReviveUsed && score > 2) {
                             continueGameController.show();
-                        } else if (cnt > 0){
+                        } else if (!continueGameController.visibility()){
                             exit();
                         }
                     }
