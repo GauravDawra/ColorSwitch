@@ -43,6 +43,8 @@ public class pausePageController implements Initializable {
     public void backPressed(MouseEvent mouseEvent){
         hide();
         try {
+            App.getStage().setHeight(703);
+            App.getStage().setWidth(665);
             App.getInstance().start(App.getStage());
         } catch (Exception e) {}
 
