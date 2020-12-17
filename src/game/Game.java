@@ -45,6 +45,7 @@ import java.util.ResourceBundle;
 import game.objects.ColorPalette;
 
 public class Game extends Application implements Serializable {
+
     public enum State {
         PLAYING,
         PAUSED,
@@ -196,7 +197,10 @@ public class Game extends Application implements Serializable {
 //            component.add(obj);
         if(obj instanceof Obstacle) obst_list.add((Obstacle)obj);
         else if(obj instanceof Star) star_list.add((Star)obj);
-        else palette_list.add((ColorPalette)obj);
+        else {
+            palette_list.add((ColorPalette) obj);
+            lastPalette = obj.getPosition().getY();
+        }
 
         component.add(obj);
 
@@ -267,6 +271,10 @@ public class Game extends Application implements Serializable {
 //        sc = null;
 //    }
 
+    private double lastPalette;
+    public void saveBall() {
+        ball.setPosition(ball.getPosition().getX(), lastPalette);
+    }
     @Override
     public void start(Stage primaryStage) throws Exception {
         /* All this code is just for testing right now*/

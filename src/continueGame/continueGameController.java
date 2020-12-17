@@ -31,6 +31,7 @@ public class continueGameController implements Initializable {
 
     public void playPressed(MouseEvent mouseEvent){
         App.getInstance().getCurrentGame().setScore(App.getInstance().getCurrentGame().getScore() - 3);
+        App.getInstance().getCurrentGame().saveBall();
         hide();
     }
 
