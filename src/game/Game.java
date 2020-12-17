@@ -65,13 +65,19 @@ public class Game extends Application implements Serializable {
     private ArrayList<Obstacle> obst_list;
     private ArrayList<Star> star_list;
     private ArrayList<ColorPalette> palette_list;
-    private AnimationTimer timer;
-    private Timeline ballTime;
+    transient private AnimationTimer timer;
+    transient private Timeline ballTime;
     private Date date;
 
     transient private Popup pausePopup;
     transient private Popup revivePopup;
     private boolean isReviveUsed;
+
+    transient private Scene sc;
+    transient AnchorPane background ;
+    transient AnchorPane elements;
+    transient Label scoreLbl;
+    transient Node pauseBtn;
 
     public Game() {
         this.score = 0;
@@ -164,7 +170,7 @@ public class Game extends Application implements Serializable {
     }
 
     private void handlePopupVisibility() {
-        if (state == State.EXIT) return;
+//        if (state == State.EXIT) return;
 
         try {
             if (pausePageController.visibility()) {
@@ -267,37 +273,43 @@ public class Game extends Application implements Serializable {
 //        sc = null;
 //    }
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        /* All this code is just for testing right now*/
-        play();
-        setStageValues(primaryStage);
-
+    public Group getRoot(AnchorPane background, AnchorPane elements) {
         Group root = new Group();
-
-        AnchorPane background = new AnchorPane();
-        AnchorPane elements = new AnchorPane();
 
         background.setPrefSize(WIDTH, HEIGHT);
         background.setStyle("-fx-background-color: black;");
 
         root.getChildren().add(background);
         root.getChildren().add(elements);
+        return root;
+    }
 
+    public void setScene() {
+        setStageValues(App.getStage());
 
-        Scene sc = new Scene((Parent) root);
-        primaryStage.setScene(sc);
+        background = new AnchorPane();
+        elements = new AnchorPane();
 
-        Label scoreLbl = getScoreLabel();
-        Node pauseBtn = getPauseBtn();
+        sc = new Scene((Parent) getRoot(background, elements));
+        App.getStage().setScene(sc);
+
+        scoreLbl = getScoreLabel();
+        pauseBtn = getPauseBtn();
 
         background.getChildren().addAll(pauseBtn, scoreLbl);
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        /* All this code is just for testing right now*/
+        play();
+        setScene();
 
         addInitialComponents();
         elements.getChildren().add(ball.getNode());
         for(GameObject o : component){
             if(o.getNode()!=null)
-            elements.getChildren().add(o.getNode());
+                elements.getChildren().add(o.getNode());
 //            ((MediumRingObstacle)o).bindToBall(ball);
         }
 

@@ -20,23 +20,15 @@ public class Ball extends GameObject implements Movable, Removable {
 
     private Color color;
     private Vector velocity;
-    transient private Circle circle;
+    transient private Circle circle = null;
 
     public Ball(double centerX, double centerY) {
         super(centerX, centerY, true);
 
         this.color = Color.GREEN; // for now it's green, we can change it to random
         this.velocity = new Vector();
-
-        // define the circle here
-        this.circle = new Circle(getPosition().getX(), getPosition().getY(), Ball.RADIUS);
-        this.circle.setFill(color.getColor());
-        circle.setCenterY(centerY);
-        circle.setCenterX(centerX);
-//        this.circle.setBlendMode(BlendMode.ADD);
-
-        // getting the resource bundle
     }
+
 
     public Color getColor() {
         return this.color;
@@ -77,7 +69,16 @@ public class Ball extends GameObject implements Movable, Removable {
     }
 
     @Override
+    public void createObstacle() {
+        this.circle = new Circle(getPosition().getX(), getPosition().getY(), Ball.RADIUS);
+        this.circle.setFill(color.getColor());
+        circle.setCenterY(getPosition().getY());
+        circle.setCenterX(getPosition().getX());
+    }
+
+    @Override
     public Node getNode() {
+        if (circle == null) createObstacle();
         return this.circle;
     }
 

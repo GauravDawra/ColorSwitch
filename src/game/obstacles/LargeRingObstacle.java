@@ -16,19 +16,24 @@ public class LargeRingObstacle extends Obstacle {
     public static ResourceBundle bundle = ResourceBundle.getBundle("resources.DimensionBundle");
     public static double RADIUS = (Double) bundle.getObject("LargeRingObstacle_radius");
 
-    transient private AnchorPane ring;
+    transient private AnchorPane ring = null;
 
     public LargeRingObstacle(double centerX, double centerY) {
         super(centerX, centerY, 0, 4);
+    }
+
+    @Override
+    public void createObstacle() {
         try {
             ring = FXMLLoader.load(getClass().getResource("/resources/views/ringObstacle/largeRingObstacle.fxml"));
-            ring.setLayoutY(centerY);
-            ring.setLayoutX(centerX);
+            ring.setLayoutY(getPosition().getY());
+            ring.setLayoutX(getPosition().getX());
         } catch(Exception e) {}
     }
 
     @Override
     public Node getNode() {
+        if (ring == null) createObstacle();
         return ring;
     }
 

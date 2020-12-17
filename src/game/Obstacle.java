@@ -28,6 +28,11 @@ public class Obstacle extends GameObject implements Movable {
     }
 
     @Override
+    public void createObstacle() {
+
+    }
+
+    @Override
     public Node getNode() {
         return null; // for now it is returning null
     }

@@ -47,5 +47,6 @@ public abstract class GameObject implements Serializable {
 //        visibility = true;
 //    }
     public abstract void display();
+    public abstract void createObstacle();
     public abstract Node getNode();
 }

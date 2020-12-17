@@ -19,18 +19,21 @@ public class WindmillObstacle extends Obstacle {
 //    private static FXMLLoader loader;
     private static double RADIUS = (Double)bundle.getObject("Windmill_radius");
 
-    transient private AnchorPane windmill;
+    transient private AnchorPane windmill = null;
 
     public WindmillObstacle(double centerX, double centerY) {
         super(centerX, centerY, 0, 4);
-//        if(loader == null)
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/views/windmillObstacle/windmillObstacle.fxml"));
+    }
+
+    @Override
+    public void createObstacle() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/views/windmillObstacle/windmillObstacle.fxml"));
         try {
             WindmillController controller = new WindmillController(2500 + new Random().nextInt(2000));
             loader.setController(controller);
             windmill = loader.load();
-            windmill.setLayoutX(centerX - RADIUS - 100); // offset for windmill
-            windmill.setLayoutY(centerY - RADIUS);
+            windmill.setLayoutX(getPosition().getX() - RADIUS - 100); // offset for windmill
+            windmill.setLayoutY(getPosition().getY() - RADIUS);
         } catch(Exception e) {
             System.out.println("Windmill is null");
         }
@@ -38,6 +41,7 @@ public class WindmillObstacle extends Obstacle {
 
     @Override
     public Node getNode() {
+        if (windmill == null) createObstacle();
         return windmill;
     }
 

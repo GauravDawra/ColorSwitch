@@ -17,19 +17,10 @@ public class Star extends GameObject implements Removable {
     private static ResourceBundle bundle = ResourceBundle.getBundle("resources.DimensionBundle");
     public static final int VALUE = (Integer) bundle.getObject("Star_value");
 
-    transient private Ellipse star;
+    transient private Ellipse star = null;
 
     public Star(double centerX, double centerY) {
         super(centerX, centerY, true);
-        Image img = new Image("/sprites/star.png");
-        ImagePattern ip = new ImagePattern(img);
-
-        star = new Ellipse();
-        star.setFill(ip);
-        star.setRadiusX((img.getWidth() / 2)+ 4);
-        star.setRadiusY((img.getHeight() / 2)+ 4);
-        star.setCenterX(centerX);
-        star.setCenterY(centerY);
     }
 
     public void split() {
@@ -52,7 +43,21 @@ public class Star extends GameObject implements Removable {
     }
 
     @Override
+    public void createObstacle() {
+        Image img = new Image("/sprites/star.png");
+        ImagePattern ip = new ImagePattern(img);
+
+        star = new Ellipse();
+        star.setFill(ip);
+        star.setRadiusX((img.getWidth() / 2)+ 4);
+        star.setRadiusY((img.getHeight() / 2)+ 4);
+        star.setCenterX(getPosition().getX());
+        star.setCenterY(getPosition().getY());
+    }
+
+    @Override
     public Node getNode() {
+        if (star == null) createObstacle();
         return star;
     }
 

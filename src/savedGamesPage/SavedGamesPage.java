@@ -39,7 +39,12 @@ public class SavedGamesPage {
         lbl.setPrefWidth(500);
         lbl.setFont(new Font("Arial", 32));
         lbl.setTextFill(Color.WHITE);
+        lbl.setOnMouseClicked(mouseEvent -> load(g));
         return lbl;
+    }
+
+    private void load(Game g) {
+        App.getInstance().loadExistingGame(g);
     }
 
     public SavedGamesPage() {

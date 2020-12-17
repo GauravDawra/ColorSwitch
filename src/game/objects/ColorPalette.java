@@ -24,16 +24,10 @@ public class ColorPalette extends GameObject implements Removable {
     public static final double RADIUS = (Double) bundle.getObject("ColorPallete_radius");
 
     private static Random random;
-    transient private AnchorPane pallete;
+    transient private AnchorPane pallete = null;
     public ColorPalette(double centerX, double centerY) {
         super(centerX, centerY, true);
         if(random == null) random = new Random();
-        try {
-            pallete = FXMLLoader.load(getClass().getResource("/resources/views/colorPallete/colorPallete.fxml"));
-            pallete.setLayoutX(centerX - RADIUS);
-
-            pallete.setLayoutY(centerY - RADIUS);
-        } catch(Exception e) {}
     }
 
     public static Color getRandomColor(Color c) {
@@ -62,7 +56,18 @@ public class ColorPalette extends GameObject implements Removable {
     }
 
     @Override
+    public void createObstacle() {
+        try {
+            pallete = FXMLLoader.load(getClass().getResource("/resources/views/colorPallete/colorPallete.fxml"));
+            pallete.setLayoutX(getPosition().getX() - RADIUS);
+
+            pallete.setLayoutY(getPosition().getY() - RADIUS);
+        } catch(Exception e) {}
+    }
+
+    @Override
     public Node getNode() {
+        if (pallete == null) createObstacle();
         return pallete;
     }
 

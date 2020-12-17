@@ -30,7 +30,7 @@ public class App extends Application implements Serializable {
     public App() {
         pastGames = new ArrayList<Game>();
         OBSTACLE_LIST = new ArrayList<Obstacle>();
-        currentGame = new Game();
+        currentGame = null;
         numOfStars = 0;
     }
 
@@ -87,6 +87,13 @@ public class App extends Application implements Serializable {
     }
 
     public void setCurrentGame(Game currentGame) {
+        if (this.currentGame != null) {
+            try {
+                currentGame.stop();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
         this.currentGame = currentGame;
     }
 
@@ -101,12 +108,19 @@ public class App extends Application implements Serializable {
 
     public Game createNewGame() {
         Game newGame = new Game();
-        currentGame = newGame;
-        return newGame;
+        setCurrentGame(newGame);
+        return getCurrentGame();
     }
 
     public void loadExistingGame(Game g) {
         currentGame = g;
+        try {
+            g.setScene();
+            g.play();
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void saveCurrentGame() {

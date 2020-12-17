@@ -27,23 +27,28 @@ public class TangentialObstacle extends Obstacle {
     public static ResourceBundle bundle = ResourceBundle.getBundle("resources.DimensionBundle");
     public static double RADIUS = (Double) bundle.getObject("MediumRingObstacle_radius");
 
-    transient private AnchorPane ring;
+    transient private AnchorPane ring = null;
 
     public TangentialObstacle(double centerX, double centerY) {
         super(centerX, centerY, 0, 4);
+    }
+
+    @Override
+    public void createObstacle() {
         try {
 //            ring = FXMLLoader.load(getClass().getResource("/resources/views/ringObstacle/mediumRingObstacle2.fxml"));
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/views/tangentialObstacle/tangentialObstacle.fxml"));
             TangentialController controller = new TangentialController(5000 + new Random().nextInt(2000));
             loader.setController(controller);
             ring = loader.load();
-            ring.setLayoutY(centerY - RADIUS - 7.5);
-            ring.setLayoutX(centerX - 2*RADIUS - 15);
+            ring.setLayoutY(getPosition().getY() - RADIUS - 7.5);
+            ring.setLayoutX(getPosition().getX() - 2*RADIUS - 15);
         } catch(Exception e) {}
     }
 
     @Override
     public Node getNode() {
+        if (ring == null) createObstacle();
         return ring;
     }
 
