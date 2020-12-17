@@ -1,41 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-<AnchorPane prefHeight="470.0" prefWidth="602.0" style="-fx-background-color: #ffb81f; -fx-border-color: #ffd500; -fx-border-width: 10px;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pausePage.Controller">
+
+<AnchorPane prefHeight="373.0" prefWidth="365.0" style="-fx-background-color: #292929; -fx-border-color: #b8b8b8; -fx-border-width: 5px;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pausePage.pausePageController">
    <children>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="121.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="99.0" fitWidth="101.0" layoutX="59.0" layoutY="170.0" onMouseClicked="#playPressed" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../sprites/button_play.png" />
          </image>
       </ImageView>
-      <Button layoutX="176.0" layoutY="325.0" mnemonicParsing="false" prefHeight="118.0" prefWidth="251.0" style="-fx-background-color: #00ff00; -fx-background-radius: 100px;" text="SAVE GAME" textFill="#fcfafa">
+      <Button layoutX="33.0" layoutY="284.0" mnemonicParsing="false" onMouseClicked="#saveBtnPressed" prefHeight="69.0" prefWidth="311.0" style="-fx-background-color: #00ff00; -fx-background-radius: 100px;" text="SAVE GAME" textFill="#fcfafa">
          <font>
             <Font size="35.0" />
          </font>
       </Button>
-      <Label alignment="CENTER" layoutX="28.0" layoutY="23.0" prefHeight="99.0" prefWidth="150.0" text="XX" textFill="WHITE">
+      <Label alignment="CENTER" layoutX="108.0" layoutY="65.0" prefHeight="99.0" prefWidth="150.0" text="XX" textFill="WHITE">
          <font>
-            <Font size="52.0" />
+            <Font size="74.0" />
          </font>
       </Label>
-      <ImageView fitHeight="56.0" fitWidth="56.0" layoutX="150.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true" rotate="18.4">
-         <image>
-            <Image url="@../sprites/star.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="195.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true" rotate="-26.6">
-         <image>
-            <Image url="@../sprites/star.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="331.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="86.0" fitWidth="87.0" layoutX="8.0" layoutY="8.0" onMouseClicked="#backPressed" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../sprites/buttton_back.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="99.0" fitWidth="99.0" layoutX="189.0" layoutY="170.0" onMouseClicked="#restartPressed" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../sprites/button_restart.png" />
          </image>
       </ImageView>
    </children>

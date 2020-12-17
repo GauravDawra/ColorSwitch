@@ -27,8 +27,10 @@ import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Path;
 import javafx.scene.shape.Shape;
 import javafx.scene.text.Font;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import pausePage.pausePageController;
 import sceneLoader.SceneLoader;
 import util.Vector;
 
@@ -63,6 +65,8 @@ public class Game extends Application implements Serializable {
     private ArrayList<ColorPalette> palette_list;
 
     private Date date;
+
+    private Popup pausePopup;
 
     public Game() {
         this.score = 0;
@@ -104,19 +108,19 @@ public class Game extends Application implements Serializable {
 
     public void pause() {
         setState(State.PAUSED);
-
+        pausePageController.show();
         try {
-            displayPausePage();
-        } catch (IOException e) {
-
-        }
+            setPausePage();
+        } catch (Exception e){}
     }
 
-    private void displayPausePage() throws IOException {
+    private void setPausePage() throws IOException {
         Scene pausePage = SceneLoader.getLoader().getPausePage();
-        Stage window = App.getStage();
-        window.setScene(pausePage);
-        window.show();
+        Popup popup = new Popup();
+        popup.getContent().add(pausePage.getRoot());
+        popup.setX(WIDTH/2);
+        popup.setY(HEIGHT/2);
+        pausePopup = popup;
     }
 
     public void exit() {
@@ -250,6 +254,16 @@ public class Game extends Application implements Serializable {
                         pause();
                     }
                 });
+
+                try {
+                    System.out.println(pausePageController.visibility());
+                    if (pausePageController.visibility()) {
+                        pausePopup.show(App.getStage());
+                    } else {
+                        pausePopup.hide();
+                    }
+                } catch (Exception e) {
+                }
 
                 if(Min > ball.getPosition().getY()) {
                     Min = ball.getPosition().getY();
