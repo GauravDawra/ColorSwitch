@@ -138,6 +138,7 @@ public class Game extends Application implements Serializable {
     private void setRevivePopup() throws  IOException {
         Scene continueGame = SceneLoader.getLoader().getContinueGame();
         revivePopup = createPopup(continueGame.getRoot());
+        revivePopup.setX(WIDTH);
     }
 
     private void handlePopupVisibility() {
