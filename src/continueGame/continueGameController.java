@@ -1,7 +1,9 @@
 package continueGame;
 
+import application.App;
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
+import sceneLoader.SceneLoader;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -28,6 +30,17 @@ public class continueGameController implements Initializable {
     }
 
     public void playPressed(MouseEvent mouseEvent){
+        App.getInstance().getCurrentGame().setScore(App.getInstance().getCurrentGame().getScore() - 3);
         hide();
+    }
+
+
+    public void exit(MouseEvent mouseEvent) {
+        try {
+            SceneLoader.getLoader().setScore(App.getInstance().getCurrentGame().getScore());
+            App.getStage().setScene(SceneLoader.getLoader().getGameOverPage());
+            App.getInstance().getCurrentGame().exit();
+            hide();
+        } catch(Exception e){}
     }
 }

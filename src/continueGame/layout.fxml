@@ -3,7 +3,6 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -16,16 +15,15 @@
             <Font name="FreeSans" size="44.0" />
          </font>
       </Text>
-      <ImageView fitHeight="90.0" fitWidth="68.0" layoutX="112.0" layoutY="96.0" onMouseClicked="#playPressed" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="90.0" fitWidth="68.0" layoutX="60.0" layoutY="130.0" onMouseClicked="#playPressed" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../sprites/button_play.png" />
          </image>
       </ImageView>
-      <Circle fill="#ed9b05" layoutX="147.0" layoutY="229.0" radius="39.0" stroke="#ffd500" strokeType="INSIDE" strokeWidth="7.0" />
-      <Text fill="WHITE" layoutX="135.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4">
-         <font>
-            <Font name="FreeSans" size="41.0" />
-         </font>
-      </Text>
+      <ImageView fitHeight="68.0" fitWidth="68.0" layoutX="170.0" layoutY="130.0" onMouseClicked="#exit" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../sprites/buttton_back.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

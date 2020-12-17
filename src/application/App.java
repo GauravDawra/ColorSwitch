@@ -94,7 +94,6 @@ public class App extends Application implements Serializable {
         //no game exception
         try {
             currentGame.start(stage);
-
         } catch (Exception e) {
             e.printStackTrace();
         }

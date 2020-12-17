@@ -35,11 +35,13 @@ public class pausePageController implements Initializable {
     }
 
     public void playPressed(MouseEvent mouseEvent){
+        App.getInstance().getCurrentGame().play();
         hide();
     }
 
     public void restartPressed(MouseEvent mouseEvent){
         hide();
+        App.getInstance().getCurrentGame().exit();
         Game newGame = App.getInstance().createNewGame();
         try {
             newGame.start(App.getStage());

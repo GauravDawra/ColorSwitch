@@ -65,7 +65,8 @@ public class Game extends Application implements Serializable {
     private ArrayList<Obstacle> obst_list;
     private ArrayList<Star> star_list;
     private ArrayList<ColorPalette> palette_list;
-
+    private AnimationTimer timer;
+    private Timeline ballTime;
     private Date date;
 
     transient private Popup pausePopup;
@@ -93,8 +94,7 @@ public class Game extends Application implements Serializable {
     }
 
     public void setScore(int sc) {
-        if(sc >= 0 && sc > getScore())
-            this.score = sc;
+        this.score = Math.max(0,sc);
     }
 
     public void increaseScore() {
@@ -111,6 +111,9 @@ public class Game extends Application implements Serializable {
 
     public void play() {
         setState(State.PLAYING);
+//        timer.play();
+        if(timer != null) timer.start();
+        if(ballTime!=null) ballTime.play();
     }
 
     public void pause() {
@@ -239,7 +242,7 @@ public class Game extends Application implements Serializable {
 //        addComponent(new WindmillObstacle(100, 100));
     }
 
-    private void moveBall() {
+    private Timeline moveBall() {
         Timeline ballTime = new Timeline(
             new KeyFrame(Duration.millis(16), ActionEvent -> {
                 if(ball.getPosition().getY() + ball.getVelocity().getY() / 5.0 > HEIGHT-50){
@@ -254,7 +257,12 @@ public class Game extends Application implements Serializable {
         );
         ballTime.setCycleCount(Timeline.INDEFINITE);
         ballTime.play();
+        return ballTime;
     }
+
+//    private void destroy(Scene sc) {
+//        sc = null;
+//    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -289,19 +297,22 @@ public class Game extends Application implements Serializable {
 //            ((MediumRingObstacle)o).bindToBall(ball);
         }
 
-        // Click evets mentioned here
+        // Click events mentioned here
         sc.setOnKeyPressed(event -> ball.jump());
         pauseBtn.setOnMouseClicked(mouseEvent -> pause());
-        moveBall();
+        ballTime = moveBall();
 
-        new AnimationTimer() {
+        timer = new AnimationTimer() {
             double Min = HEIGHT/2;
             int cnt = 0;
 
             @Override
             public void handle(long now) {
-                if(getState() == State.EXIT) this.stop();
-                play();
+                if(getState() == State.EXIT) {
+                    ballTime.stop();
+//                    destroy(sc);
+                    this.stop();
+                }
 
                 if(Min > ball.getPosition().getY()) {
                     Min = ball.getPosition().getY();
@@ -375,8 +386,8 @@ public class Game extends Application implements Serializable {
                 }
 //                System.out.println(obst_list.size() + palette_list.size());
             }
-        }.start();
-//        timer.start();
+        };
+        timer.start();
 
         primaryStage.show();
     }
